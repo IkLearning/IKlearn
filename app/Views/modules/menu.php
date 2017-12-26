@@ -30,7 +30,7 @@
         <div id="cartBody">
         <?php if(Session::has('cart')): ?>
           <?php foreach(Session::get('cart')->items as $item): ?>
-            <a class="dropdown-item">
+            <a class="dropdown-item" onclick="removeCartItem(<?= $item['item']->MaSP ?>)">
               <span><img width="50" src="../../../app/public/source/img/product/<?= trim($item['item']->TenSP)?>/thumbnail/<?=trim($item['item']->TenSP).'.png' ?>" alt=""></span>
               <span><?= $item['item']->TenSP ?></span>
               <span><?= $item['item']->GiaSP ?></span>
@@ -38,10 +38,10 @@
               <span class="badge badge-pill badge-warning"><i class="fa fa-times" aria-hidden="true"></i></span>
             </a>
           <?php endforeach; ?>
+        <?php endif;?>
         </div>
         <div class="dropdown-divider"></div>
-        <div id="totalPrice" class="dropdown-item">Tổng: <span><?= Session::get('cart')->totalPrice ?></span></div>
-        <?php endif;?>
+        <div id="totalPrice" class="dropdown-item">Tổng: <span><?= Session::has('cart')?Session::get('cart')->totalPrice:0 ?></span></div>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <button  class="btn btn-info">
@@ -55,9 +55,9 @@
     </li>
     <li class="nav-item">&nbsp;</li>
     <li class="nav-item">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" action="page/search" method="POST">
+        <input class="form-control mr-sm-2" name="key" type="search" placeholder="Search" aria-label="Search">
+        <input class="btn btn-outline-info my-2 my-sm-0" type="submit" value="Search">
       </form>
     </li>
     <li class="nav-item">&nbsp;</li>

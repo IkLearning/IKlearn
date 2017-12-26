@@ -4,10 +4,7 @@ class Bootstrap{
     public function __construct(){
         //1. router
         $tokens = explode('/',rtrim($_SERVER['REQUEST_URI'],'/'));
-        // echo '<pre>';
-        // print_r($_SERVER);
-        // print_r($tokens);
-        // echo '</pre>';
+
 
         //2. Dispatcher
         $controllerName = ucfirst($tokens[1].'Controller');
@@ -23,11 +20,6 @@ class Bootstrap{
             else:
                 $controller->index($request ?? null);
             endif;
-        // else:
-        //     $controllerName = 'ErrorController';
-        //     require_once('app/Controllers/'.$controllerName.'.php');
-        //     $controller = new $controllerName;
-        //     $controller->index();
         endif;
 
     }

@@ -69,6 +69,12 @@ class Product{
         }
     }
 
+    public static function findByName($name){
+        $sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$name%' AND BiXoa = FALSE LIMIT 10";
+        if($data = Provider::ExecuteNonQuery($sql))
+            return self::convert($data);
+    }
+
     public static function all($num = 0){
         $sl = $num !=0 ? "LIMIT $num": "";
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
@@ -81,7 +87,7 @@ class Product{
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP
                 WHERE SP.BiXoa = FALSE
-                ORDER BY SP.NgayNhap DESC LIMIT 0, 10";
+                ORDER BY SP.NgayNhap DESC LIMIT 0, 8";
         if($data = Provider::ExecuteNonQuery($sql))
             return self::convert($data);
     }
@@ -90,7 +96,7 @@ class Product{
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP
                 WHERE SP.BiXoa = FALSE
-                ORDER BY SP.SoLuongBan DESC LIMIT 0, 10";
+                ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
         if($data = Provider::ExecuteNonQuery($sql))
             return self::convert($data);
     }
@@ -99,7 +105,7 @@ class Product{
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP
                 WHERE SP.BiXoa = FALSE
-                ORDER BY SP.SoLuotXem DESC LIMIT 0, 10";
+                ORDER BY SP.SoLuotXem DESC LIMIT 0, 8";
         if($data = Provider::ExecuteNonQuery($sql))
             return self::convert($data);
     }
@@ -108,7 +114,7 @@ class Product{
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP
                 WHERE SP.MaLoaiSanPham = $id AND SP.BiXoa = FALSE
-                ORDER BY SP.SoLuongBan DESC LIMIT 0, 10";
+                ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
         if($data = Provider::ExecuteNonQuery($sql))
             return self::convert($data);
     }
@@ -117,7 +123,39 @@ class Product{
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP
                 WHERE SP.MaHangSanXuat = $id AND SP.BiXoa = FALSE
-                ORDER BY SP.SoLuongBan DESC LIMIT 0, 10";
+                ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
+        if($data = Provider::ExecuteNonQuery($sql))
+            return self::convert($data);
+    }
+
+    public static function search($prices,$types){
+        $priceString = '';
+        $typeString = '';
+        if($prices)
+            $priceString = 'SP.GiaSanPham IN('.implode(',', $prices).')';
+        if($types)
+            $typeString = 'SP.MaLoaiSanPham IN('.implode(',', $types).')';
+        $whereCondition = '';
+        if($typeString != '' && $priceString != '')
+            $whereCondition = "WHERE $priceString AND $typeString";
+        else if($typeString == '' && $priceString != '')
+            $whereCondition = "WHERE $priceString";
+        else 
+            $whereCondition = "WHERE $typeString";
+        $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
+        FROM sanpham SP
+        $whereCondition
+        ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
+
+        if($data = Provider::ExecuteNonQuery($sql))
+            return self::convert($data);
+    }
+
+    public static function more($id){
+        $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
+        FROM sanpham SP
+        WHERE SP.MaSanPham > $id AND SP.BiXoa = FALSE
+        LIMIT 0, 8";
         if($data = Provider::ExecuteNonQuery($sql))
             return self::convert($data);
     }

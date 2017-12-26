@@ -37,6 +37,10 @@ class PageController extends Controller{
             Session::put('cart',$cart);
         else
             Session::forget('cart');
+        if(Session::has('cart')){
+            print_r(json_encode(Session::get('cart')));
+            return;
+        }
     }
 
     public function reduceCartByOne(){
@@ -47,10 +51,39 @@ class PageController extends Controller{
             Session::put('cart',$cart);
         else
             Session::forget('cart');
+        if(Session::has('cart')){
+            print_r(json_encode(Session::get('cart')));
+            return;
+        }
     }
 
     public function search(){
-        return $this->view('page.search','master');
+        $this->items = [];
+        if(isset($_POST['key']))
+            $this->items = Product::findByName($_POST['key']);
+        else
+            $this->items = Product::all(8);
+        return $this->view('page.search','master','items');
     }
 
+    public function searchFilter(){
+        $filter = $_POST['filter']??null;
+        if(!$filter)
+        {
+            $data = Product::all(8);
+            print_r(json_encode($data));
+        }
+        else{
+            $prices = $filter['prices']??null;
+            $types = $filter['types']??null;
+            if($data = Product::search($prices,$types))
+                print_r(json_encode($data));
+        }
+    }
+
+    public function loadMore(){
+        if(isset($_POST['id']))
+            if($data = Product::more($_POST['id']))
+                print_r(json_encode($data));
+    }
 }
