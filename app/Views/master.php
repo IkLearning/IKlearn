@@ -29,12 +29,6 @@
                 $('#return-to-top').fadeOut(200); 
             }
         });
-        $(window).scroll(function() {
-            if($(window).scrollTop() + $(window).height() >= $(document).height()) {
-                var last_id = $(".project-hover:last").prop("id");
-                loadMore(last_id.substr(2));
-            }
-        });
         $('#return-to-top').click(function() { 
             $('body,html').animate({
                 scrollTop : 0 

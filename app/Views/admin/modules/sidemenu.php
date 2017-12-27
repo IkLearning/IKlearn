@@ -21,6 +21,7 @@
                 <li> <a href="factories">Hãng Sản Xuất</a></li>
                 <li> <a href="users">Tài Khoản</a></li>
                 <li> <a href="usertypes">Loại Tài Khoản</a></li>
+                <li> <a href="bills">Đơn Đặt Hàng</a></li>
               </ul>
             </li>
           </ul>

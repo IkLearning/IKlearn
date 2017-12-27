@@ -63,4 +63,9 @@ class AdminController extends Controller{
         echo '1';
     }
 
+    //Bill Activity
+    public function bills(){
+        return $this->view('bill.index','admin.dashdoard');
+    }
+
 }

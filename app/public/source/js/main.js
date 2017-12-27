@@ -158,16 +158,21 @@ function params(){
 
 //End search
 
-//Load on scroll
+//Load on more
+$('#ajax-load').on('click',function(){
+    var id = $('.project-hover:last').prop('id');
+    loadMore(id.substr(2));
+});
+
 function loadMore(id){
     $.ajax({
         url: 'loadMore',
         data:{id},
         type: 'POST',
-        beforeSend: () => $('.ajax-load').show()
+        beforeSend: () => $('#ajax-load').text('Loading..')
         })
         .done((data)=>{
-            $('.ajax-load').hide();
+            $('#ajax-load').text('More')
             appenSearch(data);
         });
 }

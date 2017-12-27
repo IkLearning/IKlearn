@@ -106,6 +106,6 @@
 <?php endforeach; ?>
 <div class="clearfix"></div>
 </div>
-<div class="ajax-load text-center" style="display:none">
-    <p><img src="http://demo.itsolutionstuff.com/plugin/loader.gif">Loading</p>
+<div style="text-align:center;margin-bottom: 5%">
+    <button id="ajax-load" class="btn btn-outline-info">More</button>
 </div>
