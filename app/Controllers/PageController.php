@@ -59,8 +59,8 @@ class PageController extends Controller{
 
     public function search(){
         $this->items = [];
-        if(isset($_POST['key']))
-            $this->items = Product::findByName($_POST['key']);
+        if(isset($_GET['key']))
+            $this->items = Product::findByName($_GET['key']);
         else
             $this->items = Product::all(8);
         return $this->view('page.search','master','items');

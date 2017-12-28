@@ -1,4 +1,5 @@
 <?php
+require_once('help.php');
 function autoloader($className){
     $dirs = array('','app/Models/','libs/','app/Services/','app/');
     $formats = array('%s.php');

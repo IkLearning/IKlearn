@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-<a class="navbar-brand" href="banchamp.dev">LNL</a>
+<a class="navbar-brand" href="<?= route('page','index') ?>">LNL</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -7,11 +7,11 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-      <a class="nav-link" href="#">Trang Chủ <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="<?= route('page','index') ?>">Trang Chủ <span class="sr-only">(current)</span></a>
     </li>
     <?php foreach (ProductType::all() as $item):?>
       <li class="nav-item">
-        <a class="nav-link" href="<?='Page/Type/'.$item->MaLoaiSP ?>"><?= $item->TenLoaiSP ?></a>
+        <a class="nav-link" href="<?= route('page','type',$item->MaLoaiSP) ?>"><?= $item->TenLoaiSP ?></a>
       </li>
     <?php endforeach ?>
   </ul>
@@ -31,7 +31,7 @@
         <?php if(Session::has('cart')): ?>
           <?php foreach(Session::get('cart')->items as $item): ?>
             <a class="dropdown-item" onclick="removeCartItem(<?= $item['item']->MaSP ?>)">
-              <span><img width="50" src="../../../app/public/source/img/product/<?= trim($item['item']->TenSP)?>/thumbnail/<?=trim($item['item']->TenSP).'.png' ?>" alt=""></span>
+              <span><img width="50" src="source/img/product/<?= trim($item['item']->TenSP)?>/thumbnail/<?=trim($item['item']->TenSP).'.png' ?>" alt=""></span>
               <span><?= $item['item']->TenSP ?></span>
               <span><?= $item['item']->GiaSP ?></span>
               <span>x<?= $item['qty'] ?></span>
@@ -55,7 +55,7 @@
     </li>
     <li class="nav-item">&nbsp;</li>
     <li class="nav-item">
-      <form class="form-inline my-2 my-lg-0" action="page/search" method="POST">
+      <form class="form-inline my-2 my-lg-0" action="<?= route('page','search') ?>" method="GET">
         <input class="form-control mr-sm-2" name="key" type="search" placeholder="Search" aria-label="Search">
         <input class="btn btn-outline-info my-2 my-sm-0" type="submit" value="Search">
       </form>
@@ -72,13 +72,13 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Thông tin cá nhân</a>
           <?php if(Session::get('auth')->role == 1): ?>
-          <a class="dropdown-item" href="../admin">Trang quản trị</a>
+          <a class="dropdown-item" href="<?= route('admin','index') ?>">Trang quản trị</a>
           <?php endif; ?>
-          <a class="dropdown-item" href="../auth/logout">Đăng xuất</a>
+          <a class="dropdown-item" href="<?= route('auth','logout') ?>">Đăng xuất</a>
         </div>
     </li>
     <?php else: ?>
-      <a href="../auth/login"><button class="btn btn-outline-info my-2 my-sm-0"> Đăng nhập</button></a>
+      <a href="<?= route('auth','login') ?>"><button class="btn btn-outline-info my-2 my-sm-0"> Đăng nhập</button></a>
     <?php endif; ?>
   </ul>
 </div>

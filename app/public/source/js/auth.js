@@ -101,21 +101,21 @@ function warningAlert(message){
 $('#login').on('click',function(){
     var username = $('#login-username').val();
     var password = $('#login-password').val();
-
     if($.trim(username).length > 0 && $.trim(password).length > 0)
     {
         $('#error').prop('hidden',true);
         $.ajax({
-            url:'submitLogin',
+            url:'http://banchamp.me/auth/submitLogin',
             method:"POST",
             data:{username,password},
             cache:false,
             beforeSend:() => $('#login').val('Đang kết nối...'),
             success:(response) => {
                 if(response == '0'){
-                    window.location.replace("../admin");
+                    window.location.replace("http://banchamp.me/admin");
                 }
                 else{
+                    alert(window.location.href);
                     loginError();
                     $('#login').val('Đăng Nhập');
                 }

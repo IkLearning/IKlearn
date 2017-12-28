@@ -1,7 +1,6 @@
 <?php
-session_start();
-if(isset($_SESSION['auth']))
-  header("location:../admin");
+if(Session::has('auth'))
+  header("location:".route('admin','index'));
 ?>
 <html>
   <head>
@@ -11,9 +10,10 @@ if(isset($_SESSION['auth']))
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    <base href="<?= asset() ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="../../app/public/source/admin/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="source/admin/css/style.default.css" id="theme-stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
@@ -44,7 +44,6 @@ if(isset($_SESSION['auth']))
           </div>
           <div class="copyrights text-center">
             <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
-            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
           </div>
         </div>
       </div>
@@ -52,12 +51,12 @@ if(isset($_SESSION['auth']))
     <!-- Javascript files-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <script src="../../app/public/source/admin/js/front.js"></script>
-    <script src="../../app/public/source/admin/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="../../app/public/source/admin/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="../../app/public/source/admin/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
-    <script src="../../app/public/source/admin/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="source/admin/js/front.js"></script>
+    <script src="source/admin/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="source/admin/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="source/admin/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="source/admin/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="../../app/public/source/js/auth.js"></script>
+    <script src="source/js/auth.js"></script>
   </body>
 </html>
