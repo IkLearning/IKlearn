@@ -47,6 +47,14 @@ class AdminController extends Controller{
         echo '1';
     }
 
+    public function deleteProduct(){
+        $product = Product::find($_POST['id']);
+        if($product->delete())
+            echo '0';
+        else
+            echo '1';
+    }
+
     //User Activity
     public function showUser(){
         $item = User::find($_POST['id']);

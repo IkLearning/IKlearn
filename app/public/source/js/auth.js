@@ -115,7 +115,6 @@ $('#login').on('click',function(){
                     window.location.replace("http://banchamp.me/admin");
                 }
                 else{
-                    alert(window.location.href);
                     loginError();
                     $('#login').val('Đăng Nhập');
                 }

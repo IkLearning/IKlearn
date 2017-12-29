@@ -6,7 +6,7 @@
 define('APP_NAME',"banchamp");  
 define('HTTP_SERVER', 'http://banchamp.me/'); 
 define('SITE_NAME', 'http://banchamp.me/');
-define('ROOT',$_SERVER['DOCUMENT_ROOT'].APP_NAME); 
+define('ROOT',$_SERVER['DOCUMENT_ROOT'].APP_NAME);
 
 /**
  * Configuration for database connection

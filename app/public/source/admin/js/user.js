@@ -17,7 +17,7 @@ $('#saveUser').on('click',function(){
     };
     $.ajax({
         type: "POST",
-        url: "saveUser",
+        url: "http://banchamp.me/admin/saveUser",
         data: {'usr':JSON.stringify(dulieu)},
         success: function(response) {
             if(response == '0'){
