@@ -27,7 +27,7 @@ class Bill{
 
     public function find($id){
         $sql = "SELECT * FROM dondathang WHERE MaDonDatHang = $id LIMIT 1";
-        if($data = Provider::ExecuteNonQuery($sql)){
+        if($data = Provider::ExecuteQuery($sql)){
             $item = new Bill;
             while($row = mysqli_fetch_array($data)){
                 $item->MaHD = $row['MaDonDatHang'];
@@ -43,7 +43,7 @@ class Bill{
     public static function all(){
         $sql = "SELECT B.MaDonDatHang,B.NgayLap,B.TongThanhTien,B.MaTaiKhoan,B.MaTinhTrang
                 FROM dondathang B";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 

@@ -49,7 +49,7 @@ class Product{
 
     public static function find($id){
         $sql = "SELECT * FROM sanpham WHERE MaSanPham = $id AND BiXoa = FALSE LIMIT 1";
-        if($data = Provider::ExecuteNonQuery($sql)){
+        if($data = Provider::ExecuteQuery($sql)){
             $item = new Product;
             while($row = mysqli_fetch_array($data)){
                 $item->MaSP = $row['MaSanPham'];
@@ -71,7 +71,7 @@ class Product{
 
     public static function findByName($name){
         $sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$name%' AND BiXoa = FALSE LIMIT 10";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -79,7 +79,7 @@ class Product{
         $sl = $num !=0 ? "LIMIT $num": "";
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP ".$sl;
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -88,7 +88,7 @@ class Product{
                 FROM sanpham SP
                 WHERE SP.BiXoa = FALSE
                 ORDER BY SP.NgayNhap DESC LIMIT 0, 8";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -97,7 +97,7 @@ class Product{
                 FROM sanpham SP
                 WHERE SP.BiXoa = FALSE
                 ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -106,7 +106,7 @@ class Product{
                 FROM sanpham SP
                 WHERE SP.BiXoa = FALSE
                 ORDER BY SP.SoLuotXem DESC LIMIT 0, 8";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -115,7 +115,7 @@ class Product{
                 FROM sanpham SP
                 WHERE SP.MaLoaiSanPham = $id AND SP.BiXoa = FALSE
                 ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -124,7 +124,7 @@ class Product{
                 FROM sanpham SP
                 WHERE SP.MaHangSanXuat = $id AND SP.BiXoa = FALSE
                 ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -147,7 +147,7 @@ class Product{
         $whereCondition
         ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
 
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -156,7 +156,7 @@ class Product{
         FROM sanpham SP
         WHERE SP.MaSanPham > $id AND SP.BiXoa = FALSE
         LIMIT 0, 8";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 

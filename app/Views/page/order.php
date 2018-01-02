@@ -59,26 +59,49 @@
                     <textarea class="form-control" id="notes" name="note" placeholder="Ghi chú"></textarea>
                 </div>
             </div>
-            <input type="submit" value="Đặt Hàng" class="btn btn-info">
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <label for="name">Hình thức thanh toán</label>
+                </div>
+                <div class="col-md-9">
+                    <ul  class="nav nav-pills">
+                        <li class="active">
+                            <a  href="#1b" data-toggle="tab">COD</a>
+                        </li>
+                        <li>
+                            <a href="#2b" data-toggle="tab">ATM</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <?php if(Session::has('cart')): ?>
+                <input id="checkout" type="submit" value="Đặt Hàng" class="btn btn-info">
+            <?php else: ?>
+                <input id="checkout" type="submit" value="Đặt Hàng" class="btn btn-info" disabled>
+            <?php endif; ?>
         </div>
         <div class="col-md-6">
             <div class="container">
                 <h2>Chi Tiết Đơn Hàng</h2>
-                <img src="" alt="Chưa có hình">
-                <p>The .thumbnail class can be used to display an image gallery.</p>
-                <p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>
-                <p>Click on the images to enlarge them.</p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <a href="/w3images/lights.jpg" target="_blank">
-                                <img src="loc2.png" alt="Lights" style="width:100%">
-                                <div class="caption">
-                                  <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                                </div>
-                            </a>
+                <div id="ordered-item">
+                <?php if(Session::has('cart')): ?>
+                    <div class="row">
+                        <?php foreach(Session::get('cart')->items as $item):?>
+                        <div class="col-md-4">
+                            <div class=" ordered-cart thumbnail">
+                                <a class= "x-cart" onclick="removeOrderedItem(<?= $item['item']->MaSP ?>)" href="javascript:;"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a href="<?= route('page','detail',$item['item']->MaSP) ?>" target="_blank">
+                                    <img src="source/img/product/<?= str_replace(' ','',$item['item']->TenSP) ?>/cover/<?= $item['item']->HinhSP ?>" alt="Lights" height="100" style="width:100%">
+                                    <div class="caption">
+                                        <p class="text-animate">Giá: <?= $item['item']->GiaSP ?> x<?= $item['qty'] ?></p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
+                    <h4 id="ordered-price">Tổng tiền: <?= Session::get('cart')->totalPrice ?></h4>
+                <?php endif; ?>
                 </div>
             </div>
         </div>

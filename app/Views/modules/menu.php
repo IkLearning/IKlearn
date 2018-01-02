@@ -43,7 +43,7 @@
         <div class="dropdown-divider"></div>
         <div id="totalPrice" class="dropdown-item">Tổng: <span><?= Session::has('cart')?Session::get('cart')->totalPrice:0 ?></span></div>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
+        <a href="<?= route('page','order') ?>" class="dropdown-item">
           <button  class="btn btn-info">
              <span>
               Đặt hàng
@@ -70,7 +70,7 @@
           </span>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+          <a class="dropdown-item" href="<?= route('page','profile') ?>">Thông tin cá nhân</a>
           <?php if(Session::get('auth')->role == 1): ?>
           <a class="dropdown-item" href="<?= route('admin','index') ?>">Trang quản trị</a>
           <?php endif; ?>

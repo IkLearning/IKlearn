@@ -14,7 +14,10 @@ function removeCartItem(id){
         url: 'http://banchamp.me/page/reduceCartByOne',
         method: "POST",
         data: {id},
-        success: (data)=> updateCart(data)
+        success: (data)=> {
+            updateCart(data);
+            updateOdered(data);
+        }
     });
 }
 
@@ -28,11 +31,10 @@ function updateCart(data){
     }
     data = JSON.parse(data);
     $('#cartStatus').html('&nbsp;('+ data.totalQty +')');
-    $('#cartBody').html('');
     $.each(data.items,(index,item) => {
         $('#cartBody').append(
             '<a class="dropdown-item" onclick="removeCartItem('+item.item.MaSP+')">'+
-                '<span><img width="50" src="../../../app/public/source/img/product/'+$.trim(item.item.TenSP)+'/thumbnail/'+$.trim(item.item.TenSP)+'.png" alt=""></span>'+
+                '<span><img width="50" src="source/img/product/'+$.trim(item.item.TenSP)+'/thumbnail/'+$.trim(item.item.TenSP)+'.png" alt=""></span>'+
                 '<span>&nbsp;'+ item.item.TenSP +'</span>'+
                 '<span>&nbsp;'+ item.price +'</span>'+
                 '<span>x'+ item.qty +'</span>'+

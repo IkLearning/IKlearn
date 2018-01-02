@@ -51,7 +51,7 @@ class User{
 
     public static function find($id){
         $sql = "SELECT * FROM taikhoan WHERE MaTaiKhoan = $id AND BiXoa = FALSE LIMIT 1";
-        if($data = Provider::ExecuteNonQuery($sql)){
+        if($data = Provider::ExecuteQuery($sql)){
             $item = new User;
             while($row = mysqli_fetch_array($data)){
                 $item->MaTaiKhoan = $row['MaTaiKhoan'];
@@ -70,7 +70,7 @@ class User{
 
     public static function findByUserName($id){
         $sql = "SELECT * FROM taikhoan WHERE TenDangNhap = '$id' AND BiXoa = FALSE LIMIT 1";
-        if($data = Provider::ExecuteNonQuery($sql)){
+        if($data = Provider::ExecuteQuery($sql)){
             $item = new User;
             while($row = mysqli_fetch_array($data)){
                 $item->MaTaiKhoan = $row['MaTaiKhoan'];
@@ -91,7 +91,7 @@ class User{
         $sl = $num !=0 ? "LIMIT $num": "";
         $sql = "SELECT MaTaiKhoan, TenDangNhap,TenHienThi, DiaChi, DienThoai, Email, MaLoaiTaiKhoan
                 FROM taikhoan ".$sl;
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 
@@ -99,7 +99,7 @@ class User{
         $sql = "SELECT MaTaiKhoan, TenDangNhap, DiaChi, DienThoai, Email, MaLoaiTaiKhoan
                 FROM taikhoan
                 WHERE MaTaiKhoan = $id AND BiXoa = FALSE LIMIT 0, 10";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 

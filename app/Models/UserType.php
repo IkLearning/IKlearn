@@ -21,7 +21,7 @@ class UserType{
 
     public function find($id){
         $sql = "SELECT MaLoaiTaiKhoan,TenLoaiTaiKhoan FROM loaitaikhoan WHERE MaLoaiTaiKhoan = $id LIMIT 1";
-        if($data = Provider::ExecuteNonQuery($sql)){
+        if($data = Provider::ExecuteQuery($sql)){
             $item = new Product;
             while($row = mysqli_fetch_array($data)){
                 $item->MaLoaiTaiKhoan = $row['MaLoaiTaiKhoan'];
@@ -34,7 +34,7 @@ class UserType{
     public static function all(){
         $sql = "SELECT MaLoaiTaiKhoan, TenLoaiTaiKhoan
                 FROM loaitaikhoan";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 

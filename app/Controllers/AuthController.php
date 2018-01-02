@@ -20,7 +20,7 @@ class AuthController extends Controller{
     public function save(){
         $user = new User;
         $user->FromJson($_POST['usr']);
-        $user->MatKhau = md5($_POST['usr']['matkhau']);
+        $user->MatKhau = md5($user->MatKhau);
         if($user->save())
             echo '0';
         else

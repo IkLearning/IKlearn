@@ -81,6 +81,10 @@ class PageController extends Controller{
         }
     }
 
+    public function profile(){
+        return $this->view('page.profile','master');
+    }
+
     public function loadMore(){
         if(isset($_POST['id']))
             if($data = Product::more($_POST['id']))

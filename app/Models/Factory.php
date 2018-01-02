@@ -24,7 +24,7 @@ class Factory{
 
     public function find($id){
         $sql = "SELECT TenHangSanXuat,LogoURL FROM hangsanxuat WHERE MaHangSanXuat = $id AND BiXoa = FALSE LIMIT 1";
-        if($data = Provider::ExecuteNonQuery($sql)){
+        if($data = Provider::ExecuteQuery($sql)){
             $item = new Factory;
             while($row = mysqli_fetch_array($data)){
                 $item->TenHangSX = $row['TenHangSanXuat'];
@@ -38,7 +38,7 @@ class Factory{
         $sql = "SELECT NSX.MaHangSanXuat,NSX.TenHangSanXuat,NSX.LogoURL
                 FROM hangsanxuat NSX
                 WHERE NSX.BiXoa = FALSE";
-        if($data = Provider::ExecuteNonQuery($sql))
+        if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
 

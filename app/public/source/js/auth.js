@@ -8,7 +8,7 @@ function find(ten){
     var flag = false;
     $.ajax({
         type:"POST",
-        url:"find",
+        url:"http://banchamp.me/auth/find",
         async: false, 
         data:{'tendangnhap':ten},
         success: function(response) {
@@ -22,9 +22,9 @@ function find(ten){
 function save(dulieu){
     $.ajax({
         type:"POST",
-        url:"save",
+        url:"http://banchamp.me/auth/save",
         data:{usr:dulieu},
-        success: function(response) {
+        success: (response)=> {
             if(response == '0'){
                 alert('Đăng ký thành công');
                 $('#signUpModal').modal('toggle');

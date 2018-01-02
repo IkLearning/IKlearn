@@ -13,7 +13,7 @@
 <body>
     <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
     <?php include('modules/menu.php') ?>
-    <div class="container" style="min-height:600px;">
+    <div id="main-contain" class="container" style="min-height:600px;">
         <?php include($this->partial) ?>
     </div>
     <?php include('modules/footer.php') ?>
@@ -22,6 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <script src="source/js/main.js"></script>
+    <script src="source/js/order.js"></script>
     <script>
         $(window).scroll(function() {
             if ($(this).scrollTop() >= 300) {   

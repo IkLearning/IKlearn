@@ -12,7 +12,7 @@ class Auth{
         $sql = "SELECT TK.TenDangNhap,TK.MatKhau,TK.TenHienThi,TK.MaLoaiTaiKhoan,LTK.TenLoaiTaiKhoan
                 FROM taikhoan TK, loaitaikhoan LTK
                 WHERE TK.TenDangNhap = '$username' AND TK.MatKhau = '$md5_password' AND TK.MaLoaiTaiKhoan = LTK.MaLoaiTaiKhoan";
-        if($result = Provider::ExecuteNonQuery($sql))
+        if($result = Provider::ExecuteQuery($sql))
         {
             if(($num_row = mysqli_num_rows($result)) > 0)
             {

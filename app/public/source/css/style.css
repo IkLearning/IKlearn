@@ -269,3 +269,34 @@ height: 5px;
     margin-left: 10px;
   }
   
+  /* Shopping cart*/
+
+.ordered-cart {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+.ordered-cart img{
+  border-radius: 2px;
+}
+
+.ordered-cart .x-cart{
+  background: yellow;
+  color: orangered;
+  position: absolute;
+  top: 0;
+  right:15;
+  border-radius: 2px;
+}
+
+
+.ordered-cart a{
+  text-decoration: none;
+}
+.ordered-cart p{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #262626;
+  font-weight: bold;
+}
+
+/* Text effect  */
+

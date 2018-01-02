@@ -13,11 +13,17 @@ class Provider{
         }
         return false;
     }
-
-    public static function ExecuteNonQuery($sql){
+    public static function ExecuteQuery($sql){
         $con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
         $con->set_charset("utf8");
         if($result = mysqli_query($con,$sql))
             return $result;
+    }
+    public static function ExecuteNonQuery($sql){
+        $con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        $con->set_charset("utf8");
+        if(mysqli_query($con,$sql))
+            if(mysqli_affected_rows($con) > 0)
+                return true;
     }
 }
