@@ -14,7 +14,6 @@
 
   </header>
 
-  <!-- bit of a bio; who are you? -->
   <?php $item = User::find(Session::get('auth')->id) ?>
   <div class="profile-bio">
     <p>
@@ -26,7 +25,6 @@
     </p>
   </div>
 
-  <!-- some social links to show off -->
   <ul class="profile-social-links">
     <li>
       <a target="_blank" href="https://www.facebook.com/Gack113">
@@ -51,10 +49,10 @@
   </ul>
   <div class="container row">
     <div class="col-6">
-      <a style="float:right" href="<?=route('page','index') ?>"><i class="fa fa-home"></i>Trang chủ</a>
+      <a href="<?=route('auth','logout') ?>"><i class="fa fa-home"></i>Trang chủ</a>
     </div>
     <div class="col-6">
-      <a style="float:right" href="<?=route('auth','logout') ?>"><i class="fa fa-sign-out"></i>Đăng xuất</a>
+      <a href="<?=route('auth','logout') ?>"><i class="fa fa-sign-out"></i>Đăng xuất</a>
     </div>
   </div>
 </aside>

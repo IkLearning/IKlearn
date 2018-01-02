@@ -1,10 +1,15 @@
 <?php
 require_once('libs/autoload.php');
-if(!Session::has('auth'))
-  header("location: ../auth/login");
-if(Session::get('auth')->role != 1)
-  header("location: ../page");
+
 class AdminController extends Controller{
+    public function __construct(){
+        if(!Session::has('auth'))
+            header("location: ../auth/login");
+        if(Session::get('auth')->role != 1)
+            header("location: ../page");
+        parent::__construct();
+    }
+
     public function index(){
         return $this->view('modules.table','admin.dashdoard');
     }
@@ -69,6 +74,10 @@ class AdminController extends Controller{
             return;
         }
         echo '1';
+    }
+
+    public function profile(){
+        return $this->view('user.profile','admin.dashdoard');
     }
 
     //Bill Activity

@@ -27,7 +27,7 @@
     <!-- Side Navbar -->
     <?php include('modules/sidemenu.php') ?>
     <div class="page home-page">
-    <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
         <?php include('modules/header.php') ?>
         <?php include($this->partial) ?>
         <?php include('modules/footer.php') ?>

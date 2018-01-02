@@ -1,9 +1,11 @@
 <nav class="side-navbar">
   <div class="side-navbar-wrapper">
     <div class="sidenav-header d-flex align-items-center justify-content-center">
-      <div class="sidenav-header-inner text-center"><img src="source/img/product/aatrox/thumbnail/aatrox.png" alt="person" class="img-fluid rounded-circle">
-        <h2 class="h5 text-uppercase"><?= Session::get('auth')->displayName ?></h2><span class="text-uppercase"><?= Session::get('auth')->roleName ?></span>
-      </div>
+      <a href="<?= route('admin','profile') ?>">
+        <div class="sidenav-header-inner text-center"><img src="source/img/product/aatrox/thumbnail/aatrox.png" alt="person" class="img-fluid rounded-circle">
+          <h2 class="h5 text-uppercase"><?= Session::get('auth')->displayName ?></h2><span class="text-uppercase"><?= Session::get('auth')->roleName ?></span>
+        </div>
+      </a>
       <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>L</strong><strong class="text-primary">N</strong><strong>L</strong></a></div>
     </div>
     <div class="main-menu">

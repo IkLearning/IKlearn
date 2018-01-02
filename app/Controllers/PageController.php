@@ -82,7 +82,9 @@ class PageController extends Controller{
     }
 
     public function profile(){
-        return $this->view('page.profile','master');
+        if(Session::has('auth'))
+            return $this->view('page.profile','master');
+        header('location:index');
     }
 
     public function loadMore(){
