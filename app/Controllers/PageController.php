@@ -92,4 +92,20 @@ class PageController extends Controller{
             if($data = Product::more($_POST['id']))
                 print_r(json_encode($data));
     }
+
+    public function newCaptcha(){
+        Captcha::new();
+    }
+
+    public function validateCaptcha(){
+        if(Session::has('captcha'))
+            {
+                echo 'khong co';
+                return;
+            }
+        if(Session::get('captcha') == $_POST['Captcha'])
+            echo '0';
+        else
+            echo '1';
+    }
 }

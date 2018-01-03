@@ -1,8 +1,26 @@
 //Start signup
+$(document).ready(function(){
+    refreshCaptcha(1);
+});
+
 $('#signUp').on('click',function(){
     if(check())
         save(check());
 });
+
+$('#reload').on('click',function(){
+    var id = Math.random();
+    refreshCaptcha(id);
+});
+
+function refreshCaptcha(id){
+    $.ajax({
+        url:'http://banchamp.me/page/newCaptcha',
+        success:(response)=>{
+            $('#captchaImage').prop('src','http://banchamp.me/page/newCaptcha?id=' + response);
+        }
+    });
+}
 
 function find(ten){
     var flag = false;
@@ -62,10 +80,16 @@ function check(){
         return false;
     }
 
-    if(tenhienthi =='' || diachi == '' || dienthoai == '' || email == ''){
+    if(tenhienthi =='' || diachi == '' || dienthoai == '' || email == '' || captcha == ''){
         dangerAlert('Vui lòng nhập đủ thông tin');
         return false;
     }
+
+    if(checkCaptcha()){
+        dangerAlert('Mã captcha không đúng');
+        return false;
+    }
+    
 
     $('#message').html('');
 
@@ -76,6 +100,21 @@ function check(){
     return JSON.stringify(data);
 }
 
+function checkCaptcha(){
+    var flag = true;
+    var Captcha = $('#captcha').val();
+    $.ajax({
+        url: 'http://banchamp.me/page/validateCaptcha',
+        data: {Captcha},
+        async:false,
+        success: (response)=>{
+            if(response == '1')
+                flag = false;
+            alert(response);
+        }
+    });
+    return flag;
+}
 function dangerAlert(message){
     $('#message').html('<span class="text-danger">'+ message +'</span>');
     $('#message').show();
@@ -92,6 +131,38 @@ function warningAlert(message){
     $('#message').html('<span class="text-wanring">'+ message +'</span>');
     $('#message').show();
     $('#message').hide(2000);
+}
+
+function passwordStrength(password) {
+
+	var msg = ['', 'weak', 'weak', 'good', 'very good', 'excellent'];
+
+	var desc = ['0%', '20%', '40%', '60%', '80%', '100%'];
+	
+	var descClass = ['', 'bg-danger', 'bg-danger', 'bg-warning', 'bg-success', 'bg-success'];
+
+	var score = 0;
+
+	// if password bigger than 6 give 1 point
+	if (password.length > 6) score++;
+
+	// if password has both lower and uppercase characters give 1 point	
+	if ((password.match(/[a-z]/)) && (password.match(/[A-Z]/))) score++;
+
+	// if password has at least one number give 1 point
+	if (password.match(/\d+/)) score++;
+
+	// if password has at least one special caracther give 1 point
+	if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) )	score++;
+
+	// if password bigger than 12 give another 1 point
+	if (password.length > 10) score++;
+	
+	// Display indicator graphic
+	$(".jak_pstrength").removeClass(descClass[score-1]).addClass(descClass[score]).css( "width", desc[score] );
+
+	// Display indicator text
+	$(".jak_pstrength").text(msg[score]);
 }
 
 //End Signup

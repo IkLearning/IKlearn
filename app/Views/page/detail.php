@@ -5,7 +5,7 @@
         <img src="source/img/product/<?= $this->item->TenSP?>/thumbnail/<?= $this->item->TenSP.'.png'?>" alt="Chưa có hình">
         <h3 class="card-title"><?= $this->item->TenSP?></h3>
         <h4>$<?= $this->item->GiaSP ?></h4>
-        <button onclick="addCart(<?= $this->item->MaSP ?>)" class="btn btn-success"><span><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Thêm</span></button>
+        <button onclick="addCart(<?= $this->item->MaSP ?>)" class="btn btn-outline-info"><span><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Thêm</span></button>
     </div>
     </div>
     <div class="card card-outline-secondary my-4">

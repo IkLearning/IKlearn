@@ -11,9 +11,10 @@ if(Session::has('auth'))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <base href="<?= asset() ?>">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="source/admin/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="source/css/signup.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
@@ -50,7 +51,8 @@ if(Session::has('auth'))
     </div>
     <!-- Javascript files-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="source/admin/js/front.js"></script>
     <script src="source/admin/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="source/admin/vendor/jquery.cookie/jquery.cookie.js"> </script>
@@ -58,5 +60,12 @@ if(Session::has('auth'))
     <script src="source/admin/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="source/js/auth.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#matkhau").keyup(function() {
+          passwordStrength($(this).val());
+        });
+      });
+    </script>
   </body>
 </html>

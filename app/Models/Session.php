@@ -1,7 +1,6 @@
 <?php
 
 class Session{
-
     private static function start(){
         if (session_status() == PHP_SESSION_NONE)
             session_start();

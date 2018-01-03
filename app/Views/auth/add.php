@@ -26,6 +26,9 @@
                 <div class="col-md-6">
                     <label for="matkhau" class="label-custom">Mật Khẩu</label>
                     <input type="password" name="matkhau" id="matkhau">
+                    <div class="progress">
+                        <div class="progress-bar jak_pstrength" role="progressbar" style="width: 0%; height: 10px;line-height: 70%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label for="nhaplaimatkhau" class="label-custom">Nhập Lại Mật Khẩu</label>
@@ -42,13 +45,21 @@
                     <input type="text" name="dienthoai" id="dienthoai">
                 </div>
             </div>
+            <div class="row">
                 <div class="col-md-6">
                     <label for="email" class="label-custom">Email</label>
                     <input type="email" name="email" id="email">
                 </div>
+                <div class="col-md-6">
+                    <label for="captcha" class="label-custom">Captcha</label>
+                    <input type="text" name="captcha" id="captcha">
+                </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">
+        <img id="captchaImage" src="source/captcha/bj.jpg" width="100" alt="k thể tải captcha">
+        <a href="javascript:;"><img id="reload" src="source/captcha/reload.png" alt=""></a>
         <button type="button" class="btn btn-warning" data-dismiss="modal">Thoát</button>
         <button id="signUp" type="button" class="btn btn-primary">Đăng ký</button>
       </div>
