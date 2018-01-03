@@ -85,7 +85,7 @@ function check(){
         return false;
     }
 
-    if(checkCaptcha()){
+    if(!checkCaptcha()){
         dangerAlert('Mã captcha không đúng');
         return false;
     }
@@ -102,15 +102,15 @@ function check(){
 
 function checkCaptcha(){
     var flag = true;
-    var Captcha = $('#captcha').val();
+    var captcha = $('#captcha').val();
     $.ajax({
         url: 'http://banchamp.me/page/validateCaptcha',
-        data: {Captcha},
+        type:'POST',
+        data: {captcha},
         async:false,
         success: (response)=>{
             if(response == '1')
                 flag = false;
-            alert(response);
         }
     });
     return flag;

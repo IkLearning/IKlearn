@@ -98,12 +98,7 @@ class PageController extends Controller{
     }
 
     public function validateCaptcha(){
-        if(Session::has('captcha'))
-            {
-                echo 'khong co';
-                return;
-            }
-        if(Session::get('captcha') == $_POST['Captcha'])
+        if(Session::get('captcha') == $_POST['captcha'])
             echo '0';
         else
             echo '1';
