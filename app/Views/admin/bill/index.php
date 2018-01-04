@@ -15,13 +15,13 @@
         </thead>
         <tbody>
         <?php foreach(Bill::all() as $item):?>
-            <tr id="hd<?= $item->MaHD ?>">
+            <tr>
                 <th scope="row"><?= $item->MaHD ?></th>
                 <td><?= $item->NgayLap ?></td>
                 <td><?= $item->TongTien ?></td>
                 <td><?= $item->MaTK ?></td>
                 <td>
-                    <button class="btn btn-info">
+                    <button onclick="editState('<?= $item->MaHD ?>')" data-toggle="modal" data-target="#myModal" class="btn btn-info">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <?= $item->TenTinhTrang ?>
                     </button>
@@ -34,3 +34,7 @@
         </tbody>
     </table>
 </div>
+
+<?php include('add.php'); ?>
+<script src="source/admin/js/bill.js"></script>
+

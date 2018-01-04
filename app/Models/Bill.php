@@ -26,7 +26,7 @@ class Bill{
             $sql = "UPDATE dondathang 
                     SET NgayLap = '$this->NgayLap', TongThanhTien = '$this->TongTien',
                         MaTaiKhoan = '$this->MaTK', MaTinhTrang = '$this->MaTinhTrang'
-                    WHERE MaDonDatHang = $this->MaHD";
+                    WHERE MaDonDatHang = '$this->MaHD'";
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }
@@ -37,8 +37,8 @@ class Bill{
             return true;
     }
 
-    public function find($id){
-        $sql = "SELECT * FROM dondathang WHERE MaDonDatHang = $id LIMIT 1";
+    public static function find($id){
+        $sql = "SELECT * FROM dondathang WHERE MaDonDatHang = '$id' LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
             $item = new Bill;
             while($row = mysqli_fetch_array($data)){
@@ -55,7 +55,8 @@ class Bill{
     public static function all(){
         $sql = "SELECT B.MaDonDatHang,B.NgayLap,B.TongThanhTien,B.MaTaiKhoan,B.MaTinhTrang,TT.TenTinhTrang
                 FROM dondathang B, tinhtrang TT
-                WHERE B.MaTinhTrang = TT.MaTinhTrang";
+                WHERE B.MaTinhTrang = TT.MaTinhTrang
+                ORDER BY CAST(SUBSTRING(MaDonDatHang, 3) AS INT)";
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }

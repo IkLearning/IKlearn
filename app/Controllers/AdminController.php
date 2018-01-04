@@ -85,4 +85,11 @@ class AdminController extends Controller{
         return $this->view('bill.index','admin.dashdoard');
     }
 
+    public function updateBillState(){
+        $bill = Bill::find($_POST['id']);
+        $bill->MaTinhTrang = $_POST['tinhtrang'];
+        if($bill->save())
+            print_r (json_encode(Bill::all()));
+    }
+
 }
