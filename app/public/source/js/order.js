@@ -37,3 +37,26 @@ function updateOdered(data){
     $('#ordered-item').append('<h4 id="ordered-price">Tổng tiền: '+data.totalPrice+'</h4>')
     $('#ordered-item').append('<button class="btn btn-outline-info" id="checkout">Đặt hàng</button>');
 }
+
+function checkout(){
+    $.ajax({
+        url:'http://banchamp.me/page/checkout',
+        beforeSend: () => $('#checkout').val('Loading..'),
+        success: (response)=>{
+            if(response == '0')
+            {
+                $('.container .row').html('<h1 class="alert alert-success">Đặt hàng thành công </h1>');
+            }
+            else{
+                alert('Đặt hàng không thành công!Vui lòng thử lại sau');
+                $('#checkout').val('Đặt hàng');
+            }
+        }
+    });
+    updateCart(data=null);
+}
+
+$('#checkout').on('click',function(){
+    checkout();
+
+});

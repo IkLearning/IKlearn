@@ -103,4 +103,32 @@ class PageController extends Controller{
         else
             echo '1';
     }
+
+    public function checkout(){
+        $cart = Session::get('cart');
+        $user = Session::get('auth');
+        $bill = new Bill;
+        $bill->NgayLap = date('Y-m-d');
+        $bill->TongTien = $cart->totalPrice;
+        $bill->MaTK = $user->id;
+        $bill->MaTinhTrang = 2;
+        if(!$bill->save()):
+            echo '1';
+            return;
+        endif;
+
+        foreach ($cart->items as $key => $item):
+            $bill_detail = new BillDetail;
+            $bill_detail->SoLuong = $item['qty'];
+            $bill_detail->GiaBan = $item['price']/$item['qty'];
+            $bill_detail->MaHD = $bill->MaHD;
+            $bill_detail->MaSP = $key;
+            if(!$bill_detail->save()):
+                echo '1';
+                return;
+            endif;
+        endforeach;
+        Session::forget('cart');
+        echo '0';
+    }
 }

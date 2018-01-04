@@ -6,6 +6,12 @@ class Provider{
         $this->con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
         $this->con->set_charset("utf8");
     }
+
+    public static function Connection(){
+        $con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        $con->set_charset("utf8");
+        return $con;
+    }
     public function Connect(){
         if($this->con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME)){
             $this->con->set_charset("utf8");

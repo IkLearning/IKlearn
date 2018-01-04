@@ -8,9 +8,20 @@ class Bill{
     public $MaTinhTrang;
 
     public function save(){
-        if(!$this->MaLoaiSP)
-            $sql = "INSERT INTO dondathang VALUES(null,'$this->NgayLap','$this->TongTien','$this->MaTK','$this->MaTinhTrang')";
-        else
+        if(!$this->MaHD){
+            $lastID = "HD1";
+            if($lastRecord = Provider::ExecuteQuery(
+                "SELECT MAX(CAST(SUBSTRING(MaDonDatHang, 3) AS INT)) AS maxid FROM dondathang"
+                )){
+                if(mysqli_num_rows($lastRecord) > 0){
+                    $row = mysqli_fetch_array($lastRecord);
+                    $lastID = $row['maxid'];
+                }
+            }
+            $lastID = "HD".($lastID+1);
+            $this->MaHD = $lastID;
+            $sql = "INSERT INTO dondathang VALUES('$this->MaHD','$this->NgayLap',$this->TongTien,$this->MaTK,$this->MaTinhTrang)";
+        }else
             $sql = "UPDATE dondathang 
                     SET NgayLap = '$this->NgayLap', TongThanhTien = '$this->TongTien',
                         MaTaiKhoan = '$this->MaTK', MaTinhTrang = '$this->MaTinhTrang'

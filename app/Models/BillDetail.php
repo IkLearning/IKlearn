@@ -8,9 +8,21 @@ class BillDetail{
     public $MaSP;
 
     public function save(){
-        if(!$this->MaCTHD)
-            $sql = "INSERT INTO chitietdondathang VALUES(null,'$this->SoLuong','$this->GiaBan','$this->MaHD','$this->MaSP')";
-        else
+        if(!$this->MaCTHD){
+            $lastID = "CTHD1";
+            if($lastRecord = Provider::ExecuteQuery(
+                "SELECT MAX(CAST(SUBSTRING(MaChiTietDonDatHang, 5) AS INT))  AS maxid
+                 FROM chitietdondathang"
+            )){
+                if(mysqli_num_rows($lastRecord) > 0){
+                    $row = mysqli_fetch_array($lastRecord);
+                    $lastID = $row['maxid'];
+                }
+            }
+            $lastID = "CTHD". ($lastID+1);
+            $this->MaCTHD = $lastID;
+            $sql = "INSERT INTO chitietdondathang VALUES('$this->MaCTHD','$this->SoLuong','$this->GiaBan','$this->MaHD','$this->MaSP')";
+        }else
             $sql = "UPDATE chitietdondathang 
                     SET SoLuong = '$this->SoLuong', GiaBan = '$this->GiaBan',
                         MaDonDatHang = '$this->MaHD', MaSanPham = '$this->MaSP'
