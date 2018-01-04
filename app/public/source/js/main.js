@@ -161,3 +161,35 @@ function loadMore(id){
             appenSearch(data);
     });
 }
+
+//Check captcha
+
+$('#reload').on('click',function(){
+    var id = Math.random();
+    refreshCaptcha(id);
+});
+
+function refreshCaptcha(id){
+    $.ajax({
+        url:'http://banchamp.me/page/newCaptcha',
+        success:(response)=>{
+            $('#captchaImage').prop('src','http://banchamp.me/page/newCaptcha?id=' + response);
+        }
+    });
+}
+
+function checkCaptcha(){
+    var flag = true;
+    var captcha = $('#captcha').val();
+    $.ajax({
+        url: 'http://banchamp.me/page/validateCaptcha',
+        type:'POST',
+        data: {captcha},
+        async:false,
+        success: (response)=>{
+            if(response == '1')
+                flag = false;
+        }
+    });
+    return flag;
+}

@@ -24,6 +24,9 @@
     <script src="source/js/main.js"></script>
     <script src="source/js/order.js"></script>
     <script>
+        $(document).ready(function(){
+            refreshCaptcha(1);
+        });
         $(window).scroll(function() {
             if ($(this).scrollTop() >= 300) {   
                 $('#return-to-top').fadeIn(200);

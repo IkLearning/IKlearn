@@ -23,6 +23,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <label for="ngaysinh" class="label-custom">Ngày Sinh</label>
+                    <input type="text" name="ngaysinh" id="ngaysinh" onfocus="(this.type='date')" onblur="(this.type='text')" valid>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <label for="matkhau" class="label-custom">Mật Khẩu</label>
                     <input type="password" name="matkhau" id="matkhau">
@@ -37,8 +43,8 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="diachi" class="label-custom">Địa Chỉ</label>
-                    <input type="text" name="diachi" id="diachi">
+                    <label for="diachi" class="label-custom">Bạn Sống Tại</label>
+                    <input type="text" name="diachi" id="diachia">
                 </div>
                 <div class="col-md-6">
                     <label for="dienthoai" class="label-custom">Điện Thoại</label>

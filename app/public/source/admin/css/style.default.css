@@ -252,6 +252,7 @@ input.form-control-custom + label::before {
   cursor: pointer;
 }
 
+
 input.form-control-custom + label::after {
   content: '\f00c';
   display: block;

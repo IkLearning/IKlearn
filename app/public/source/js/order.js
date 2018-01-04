@@ -15,7 +15,7 @@ function updateOdered(data){
     if(!$.trim(data))
     {
         $('#ordered-item').append('<h4 id="ordered-price">Tổng tiền: '+0+'</h4>')
-        $('#checkout').prop('disabled',true);
+        $('#ordered-item').append('<button class="btn btn-outline-info" id="checkout" disabled>Đặt hàng</button>');
         return;
     }
     data = JSON.parse(data);
@@ -34,6 +34,6 @@ function updateOdered(data){
                 '</div>'+
             '</div>');
     });
-    $('#checkout').prop('disabled',false);
     $('#ordered-item').append('<h4 id="ordered-price">Tổng tiền: '+data.totalPrice+'</h4>')
+    $('#ordered-item').append('<button class="btn btn-outline-info" id="checkout">Đặt hàng</button>');
 }

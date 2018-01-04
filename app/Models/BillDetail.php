@@ -11,7 +11,7 @@ class BillDetail{
         if(!$this->MaCTHD)
             $sql = "INSERT INTO chitietdondathang VALUES(null,'$this->SoLuong','$this->GiaBan','$this->MaHD','$this->MaSP')";
         else
-            $sql = "UPDATE dondathang 
+            $sql = "UPDATE chitietdondathang 
                     SET SoLuong = '$this->SoLuong', GiaBan = '$this->GiaBan',
                         MaDonDatHang = '$this->MaHD', MaSanPham = '$this->MaSP'
                     WHERE MaMaChiTietDonDatHang = $this->MaCTHD";

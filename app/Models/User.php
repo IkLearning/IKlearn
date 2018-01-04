@@ -5,6 +5,7 @@ class User{
     public $TenDangNhap;
     public $MatKhau;
     public $TenHienThi;
+    public $NgaySinh;
     public $DiaChi;
     public $DienThoai;
     public $Email;
@@ -24,7 +25,7 @@ class User{
 
     public function save(){
         if($this->MaTaiKhoan == null):
-            $sql = "INSERT INTO taikhoan VALUES (null,'$this->TenDangNhap','$this->MatKhau','$this->TenHienThi'
+            $sql = "INSERT INTO taikhoan VALUES (null,'$this->TenDangNhap','$this->MatKhau','$this->TenHienThi','$this->NgaySinh'
             ,'$this->DiaChi',$this->DienThoai,'$this->Email','$this->BiXoa',
             '$this->MaLoaiTaiKhoan')";
         else:
@@ -32,6 +33,7 @@ class User{
                     SET TenDangNhap = '$this->TenDangNhap',
                         MatKhau = '$this->MatKhau',
                         TenHienThi = '$this->TenHienThi',
+                        NgaySinh = '$this->NgaySinh',
                         DiaChi = '$this->DiaChi',
                         DienThoai = '$this->DienThoai',
                         Email = '$this->Email', BiXoa = '$this->BiXoa',
@@ -77,6 +79,7 @@ class User{
                 $item->TenDangNhap = $row['TenDangNhap'];
                 $item->MatKhau = $row['MatKhau'];
                 $item->TenHienThi = $row['TenHienThi'];
+                $item->NgaySinh = $row['NgaySinh'];
                 $item->DiaChi = $row['DiaChi'];
                 $item->DienThoai = $row['DienThoai'];
                 $item->Email = $row['Email'];

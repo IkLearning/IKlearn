@@ -22,6 +22,22 @@ function refreshCaptcha(id){
     });
 }
 
+function checkCaptcha(){
+    var flag = true;
+    var captcha = $('#captcha').val();
+    $.ajax({
+        url: 'http://banchamp.me/page/validateCaptcha',
+        type:'POST',
+        data: {captcha},
+        async:false,
+        success: (response)=>{
+            if(response == '1')
+                flag = false;
+        }
+    });
+    return flag;
+}
+
 function find(ten){
     var flag = false;
     $.ajax({
@@ -57,6 +73,7 @@ function check(){
     var tendangnhap = $('#tendangnhap').val();
     var matkhau = $('#matkhau').val();
     var nhaplaimatkhau = $('#nhaplaimatkhau').val();
+    var ngaysinh = $('#ngaysinh').val();
     var tenhienthi = $('#tenhienthi').val();
     var diachi = $('#diachi').val();
     var dienthoai = $('#dienthoai').val();
@@ -80,7 +97,7 @@ function check(){
         return false;
     }
 
-    if(tenhienthi =='' || diachi == '' || dienthoai == '' || email == '' || captcha == ''){
+    if(tenhienthi =='' || diachi == '' || dienthoai == '' || email == '' || captcha == '' || ngaysinh == ''){
         dangerAlert('Vui lòng nhập đủ thông tin');
         return false;
     }
@@ -94,27 +111,12 @@ function check(){
     $('#message').html('');
 
     var data = {
-        "TenDangNhap":tendangnhap, "MatKhau":matkhau,"TenHienThi":tenhienthi,"DiaChi":diachi,
+        "TenDangNhap":tendangnhap, "MatKhau":matkhau,"TenHienThi":tenhienthi,"NgaySinh":ngaysinh,"DiaChi":diachi,
         "DienThoai":dienthoai,"Email":email,"BiXoa":0,"MaLoaiTaiKhoan":3
     };
     return JSON.stringify(data);
 }
 
-function checkCaptcha(){
-    var flag = true;
-    var captcha = $('#captcha').val();
-    $.ajax({
-        url: 'http://banchamp.me/page/validateCaptcha',
-        type:'POST',
-        data: {captcha},
-        async:false,
-        success: (response)=>{
-            if(response == '1')
-                flag = false;
-        }
-    });
-    return flag;
-}
 function dangerAlert(message){
     $('#message').html('<span class="text-danger">'+ message +'</span>');
     $('#message').show();
