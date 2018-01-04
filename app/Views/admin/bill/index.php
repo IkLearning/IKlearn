@@ -21,13 +21,10 @@
                 <td><?= $item->TongTien ?></td>
                 <td><?= $item->MaTK ?></td>
                 <td>
-                    <?php
-                        echo(
-                        $item->MaTinhTrang==1? 
-                        '<i class="fa fa-check" aria-hidden="true"></i> Đã xử lý':
-                        '<i class="fa fa-times" aria-hidden="true"></i> Chưa xử lý'
-                        );
-                    ?>
+                    <button class="btn btn-info">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <?= $item->TenTinhTrang ?>
+                    </button>
                 </td>
                 <td style="text-align:center">
                     <button onclick="showBill(<?= $item->MaHD ?>)" id="xem" class="btn btn-info">Xem</button>&nbsp;

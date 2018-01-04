@@ -23,9 +23,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <script src="source/js/main.js"></script>
     <script src="source/js/order.js"></script>
+    <?php if($this->partial == 'page/order.php'): ?>
+        <script src="source/js/auth.js"></script>
+    <?php endif; ?>
     <script>
         $(document).ready(function(){
             refreshCaptcha(1);
+            $("#matkhau").keyup(function() {
+            passwordStrength($(this).val());
+            });
         });
         $(window).scroll(function() {
             if ($(this).scrollTop() >= 300) {   

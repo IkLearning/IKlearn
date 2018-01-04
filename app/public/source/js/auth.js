@@ -185,7 +185,7 @@ $('#login').on('click',function(){
             beforeSend:() => $('#login').val('Đang kết nối...'),
             success:(response) => {
                 if(response == '0'){
-                    window.location.replace("http://banchamp.me/admin");
+                    window.location.replace(window.location.href);
                 }
                 else{
                     loginError();

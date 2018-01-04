@@ -6,6 +6,7 @@ class Bill{
     public $TongTien;
     public $MaTK;
     public $MaTinhTrang;
+    public $TenTinhTrang;
 
     public function save(){
         if(!$this->MaHD){
@@ -52,8 +53,9 @@ class Bill{
     }
 
     public static function all(){
-        $sql = "SELECT B.MaDonDatHang,B.NgayLap,B.TongThanhTien,B.MaTaiKhoan,B.MaTinhTrang
-                FROM dondathang B";
+        $sql = "SELECT B.MaDonDatHang,B.NgayLap,B.TongThanhTien,B.MaTaiKhoan,B.MaTinhTrang,TT.TenTinhTrang
+                FROM dondathang B, tinhtrang TT
+                WHERE B.MaTinhTrang = TT.MaTinhTrang";
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
@@ -67,6 +69,7 @@ class Bill{
             $item->TongTien = $row['TongThanhTien'];
             $item->MaTK = $row['MaTaiKhoan'];
             $item->MaTinhTrang = $row['MaTinhTrang'];
+            $item->TenTinhTrang = $row['TenTinhTrang'];
             $result[] = $item;
         }
         return $result;
