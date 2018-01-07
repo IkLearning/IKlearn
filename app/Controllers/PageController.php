@@ -12,6 +12,8 @@ class PageController extends Controller{
 
     public function detail($id){
         $this->item = Product::find($id);
+        $this->item->SoLuotXem++;
+        $this->item->save();
         return $this->view('page.detail','master','item');
     }
 
@@ -108,7 +110,7 @@ class PageController extends Controller{
         $cart = Session::get('cart');
         $user = Session::get('auth');
         $bill = new Bill;
-        $bill->NgayLap = date('Y-m-d');
+        $bill->NgayLap = date('Y-m-d H:i:s');
         $bill->TongTien = $cart->totalPrice;
         $bill->MaTK = $user->id;
         $bill->MaTinhTrang = 2;
@@ -123,6 +125,11 @@ class PageController extends Controller{
             $bill_detail->GiaBan = $item['price']/$item['qty'];
             $bill_detail->MaHD = $bill->MaHD;
             $bill_detail->MaSP = $key;
+
+            $product = Product::find($key);
+            $product->SoLuongTon-= $item['qty'];
+            $product->SoLuongBan+= $item['qty'];
+            $product->save();
             if(!$bill_detail->save()):
                 echo '1';
                 return;
@@ -130,5 +137,9 @@ class PageController extends Controller{
         endforeach;
         Session::forget('cart');
         echo '0';
+    }
+
+    public function payhistory(){
+        return $this->view('page.payhistory','master');
     }
 }

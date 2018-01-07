@@ -35,7 +35,7 @@ function updateOdered(data){
             '</div>');
     });
     $('#ordered-item').append('<h4 id="ordered-price">Tổng tiền: '+data.totalPrice+'</h4>')
-    $('#ordered-item').append('<button class="btn btn-outline-info" id="checkout">Đặt hàng</button>');
+    $('#ordered-item').append('<input id="checkout" type="submit" value="Đặt hàng" class="btn btn-outline-info">');
 }
 
 function checkout(){
@@ -56,7 +56,7 @@ function checkout(){
     updateCart(data=null);
 }
 
-$('#checkout').on('click',function(){
+$('#ordered-item').on('click','#checkout',function(){
     checkout();
 
 });

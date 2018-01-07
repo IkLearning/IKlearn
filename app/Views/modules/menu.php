@@ -74,6 +74,7 @@
           <?php if(Session::get('auth')->role == 1): ?>
           <a class="dropdown-item" href="<?= route('admin','index') ?>">Trang quản trị</a>
           <?php endif; ?>
+          <a class="dropdown-item" href="<?= route('page','payhistory') ?>">Lịch sử giao dịch</a>
           <a class="dropdown-item" href="<?= route('auth','logout') ?>">Đăng xuất</a>
         </div>
     </li>

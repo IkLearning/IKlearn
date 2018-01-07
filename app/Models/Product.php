@@ -33,12 +33,10 @@ class Product{
         else:
             $sql = "UPDATE sanpham SET TenSanPham = '$this->TenSP', HinhURL = '$this->HinhSP', GiaSanPham = '$this->GiaSP', NgayNhap = '$this->NgayNhap',
                     SoLuongTon = '$this->SoLuongTon', SoLuongBan = '$this->SoLuongBan', SoLuotXem = '$this->SoLuotXem', MoTa = '$this->MoTa', BiXoa = '$this->BiXoa',
-                    MaLoaiSanPham = '$this->MaLoaiSP', MaHangSanXuat = '$this->MaHangSX' WHERE MaSanPham = $this->MaSP";
+                    MaLoaiSanPham = '$this->MaLoaiSP', MaHangSanXuat = '$this->MaHangSX' WHERE MaSanPham = '$this->MaSP'";
         endif;
-
         if(Provider::ExecuteNonQuery($sql))
-            return $sql;
-        return $sql;
+            return true;
     }
 
     public function delete(){
@@ -48,7 +46,7 @@ class Product{
     }
 
     public static function find($id){
-        $sql = "SELECT * FROM sanpham WHERE MaSanPham = $id AND BiXoa = FALSE LIMIT 1";
+        $sql = "SELECT * FROM sanpham WHERE MaSanPham = '$id' AND BiXoa = FALSE LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
             $item = new Product;
             while($row = mysqli_fetch_array($data)){
