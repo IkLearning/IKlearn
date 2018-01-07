@@ -4,8 +4,8 @@
  *
  */
 define('APP_NAME',"banchamp");  
-define('HTTP_SERVER', 'http://banchamp.me/'); 
-define('SITE_NAME', 'http://banchamp.me/');
+define('HTTP_SERVER', 'http://banchamp.me:88/'); 
+define('SITE_NAME', 'http://banchamp.me:88/');
 define('ROOT',$_SERVER['DOCUMENT_ROOT'].APP_NAME);
 
 /**

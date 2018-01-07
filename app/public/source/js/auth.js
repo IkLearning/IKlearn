@@ -15,9 +15,9 @@ $('#reload').on('click',function(){
 
 function refreshCaptcha(id){
     $.ajax({
-        url:'http://banchamp.me/page/newCaptcha',
+        url:'http://banchamp.me:88/page/newCaptcha',
         success:(response)=>{
-            $('#captchaImage').prop('src','http://banchamp.me/page/newCaptcha?id=' + response);
+            $('#captchaImage').prop('src','http://banchamp.me:88/page/newCaptcha?id=' + response);
         }
     });
 }
@@ -26,7 +26,7 @@ function checkCaptcha(){
     var flag = true;
     var captcha = $('#captcha').val();
     $.ajax({
-        url: 'http://banchamp.me/page/validateCaptcha',
+        url: 'http://banchamp.me:88/page/validateCaptcha',
         type:'POST',
         data: {captcha},
         async:false,
@@ -42,7 +42,7 @@ function find(ten){
     var flag = false;
     $.ajax({
         type:"POST",
-        url:"http://banchamp.me/auth/find",
+        url:"http://banchamp.me:88/auth/find",
         async: false, 
         data:{'tendangnhap':ten},
         success: function(response) {
@@ -56,7 +56,7 @@ function find(ten){
 function save(dulieu){
     $.ajax({
         type:"POST",
-        url:"http://banchamp.me/auth/save",
+        url:"http://banchamp.me:88/auth/save",
         data:{usr:dulieu},
         success: (response)=> {
             if(response == '0'){
@@ -178,7 +178,7 @@ $('#login').on('click',function(){
     {
         $('#error').prop('hidden',true);
         $.ajax({
-            url:'http://banchamp.me/auth/submitLogin',
+            url:'http://banchamp.me:88/auth/submitLogin',
             method:"POST",
             data:{username,password},
             cache:false,

@@ -2,7 +2,7 @@
 
 function addCart(id){
     $.ajax({
-        url: 'http://banchamp.me/page/addCart',
+        url: 'http://banchamp.me:88/page/addCart',
         method: "POST",
         data: {id},
         success: (data)=> updateCart(data)
@@ -11,7 +11,7 @@ function addCart(id){
 
 function removeCartItem(id){
     $.ajax({
-        url: 'http://banchamp.me/page/reduceCartByOne',
+        url: 'http://banchamp.me:88/page/reduceCartByOne',
         method: "POST",
         data: {id},
         success: (data)=> {
@@ -99,7 +99,7 @@ function appenSearch(data){
 function search(){
     var filters = params();
     $.ajax({
-        url: 'http://banchamp.me/page/searchFilter',
+        url: 'http://banchamp.me:88/page/searchFilter',
         method: 'POST',
         data:{filter:filters},
         success:(data)=> updateSearch(data)
@@ -151,7 +151,7 @@ $('#ajax-load').on('click',function(){
 
 function loadMore(id){
     $.ajax({
-        url: 'http://banchamp.me/page/loadMore',
+        url: 'http://banchamp.me:88/page/loadMore',
         data:{id},
         type: 'POST',
         beforeSend: () => $('#ajax-load').text('Loading..')
@@ -171,9 +171,9 @@ $('#reload').on('click',function(){
 
 function refreshCaptcha(id){
     $.ajax({
-        url:'http://banchamp.me/page/newCaptcha',
+        url:'http://banchamp.me:88/page/newCaptcha',
         success:(response)=>{
-            $('#captchaImage').prop('src','http://banchamp.me/page/newCaptcha?id=' + response);
+            $('#captchaImage').prop('src','http://banchamp.me:88/page/newCaptcha?id=' + response);
         }
     });
 }
@@ -182,7 +182,7 @@ function checkCaptcha(){
     var flag = true;
     var captcha = $('#captcha').val();
     $.ajax({
-        url: 'http://banchamp.me/page/validateCaptcha',
+        url: 'http://banchamp.me:88/page/validateCaptcha',
         type:'POST',
         data: {captcha},
         async:false,

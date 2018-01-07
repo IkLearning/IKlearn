@@ -92,4 +92,18 @@ class AdminController extends Controller{
             print_r (json_encode(Bill::all()));
     }
 
+    // Categories
+
+
+
+    //Brands
+
+
+
+    //Users
+
+
+    //User types
+
+
 }
