@@ -1,6 +1,6 @@
 function removeOrderedItem(id){
     $.ajax({
-        url: 'http://banchamp.me:88/page/reduceCartByOne',
+        url: 'http://Iklearn.me:88/page/reduceCartByOne',
         method: "POST",
         data: {id},
         success: (data)=> {
@@ -25,7 +25,7 @@ function updateOdered(data){
             '<div class="col-md-4">'+
                 '<div class="ordered-cart thumbnail">'+
                     '<a class="x-cart" onclick="removeOrderedItem('+item.item.MaSP +')" href="javascript:;"><i class="fa fa-times" aria-hidden="true"></i></a>'+
-                    '<a href="http://banchamp.me:88/page/detail/'+item.item.MaSP+'" target="_blank">'+
+                    '<a href="http://Iklearn.me:88/page/detail/'+item.item.MaSP+'" target="_blank">'+
                         '<img src="source/img/product/'+$.trim(item.item.TenSP)+'/cover/'+item.item.HinhSP+'" alt="Lights" height="100" style="width:100%">'+
                         '<div class="caption">'+
                             '<p class="text-animate">Giá: '+item.item.GiaSP+' x'+item.qty +'</p>'+
@@ -40,7 +40,7 @@ function updateOdered(data){
 
 function checkout(){
     $.ajax({
-        url:'http://banchamp.me:88/page/checkout',
+        url:'http://Iklearn.me:88/page/checkout',
         beforeSend: () => $('#checkout').val('Loading..'),
         success: (response)=>{
             if(response == '0')

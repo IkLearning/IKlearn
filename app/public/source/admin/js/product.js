@@ -15,7 +15,7 @@ function showProduct(id){
 function loadProduct(id){
     $.ajax({
         type: "POST",
-        url: "http://banchamp.me:88/admin/showProduct",
+        url: "http://Iklearn.me:88/admin/showProduct",
         data: {id: id},
         success: function(response) {
             var data = JSON.parse(response);
@@ -37,7 +37,7 @@ function loadProduct(id){
 
 function deleteProduct(id){
     $.ajax({
-        url:'http://banchamp.me:88/admin/deleteProduct',
+        url:'http://Iklearn.me:88/admin/deleteProduct',
         type:'POST',
         data:{id},
         success:(response)=>{
@@ -77,7 +77,7 @@ $('#saveProduct').on('click',function(){
                 };
     $.ajax({
         type: "POST",
-        url: "http://banchamp.me:88/admin/saveProduct",
+        url: "http://Iklearn.me:88/admin/saveProduct",
         data: {'sp':JSON.stringify(dulieu)},
         success: function(response) {
             if(response == '0'){
