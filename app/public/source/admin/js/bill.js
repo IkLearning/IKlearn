@@ -27,7 +27,7 @@ function updateBills(data){
 function updateState(id){
     var tinhtrang = $('#tinhtrang').val();
     $.ajax({
-        url:'http://banchamp.me/admin/updateBillState',
+        url:'http://Iklearn.me:88/admin/updateBillState',
         type:'POST',
         data: {id,tinhtrang},
         success: (response)=>{
