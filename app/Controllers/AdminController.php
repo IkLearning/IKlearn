@@ -113,8 +113,8 @@ class AdminController extends Controller{
             echo '1';
     }
 
-    //Brands
-    public function saveBrand(){
+    //Factory
+    public function saveFactory(){
         $hsx = new Factory;
         $hsx->FromJson($_POST['hsx']);
         if($hsx->save()){
@@ -136,7 +136,7 @@ class AdminController extends Controller{
 
 
     //User types
-    public function saveBrand(){
+    public function saveUserType(){
         $usrtype = new UserType;
         $usrtype->FromJson($_POST['usrtype']);
         if($usrtype->save()){
@@ -146,7 +146,7 @@ class AdminController extends Controller{
         echo '1';
     }
 
-    public function deleteFactory(){
+    public function deleteUserType(){
         $usrtype = UserType::find($_POST['id']);
         if($usrtype->delete())
         {

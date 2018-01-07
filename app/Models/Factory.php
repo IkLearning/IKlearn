@@ -6,12 +6,23 @@ class Factory{
     public $HinhHangSX;
     public $BiXoa;
 
+    public function FromJson($obj){
+        $data = json_decode($obj,true);
+        foreach($data as $key => $val)
+        {
+            if(property_exists(__CLASS__,$key))
+            {
+                $this->$key =  $val;
+            }
+        }
+    }
+
     public function save(){
-        if($this->MaLoaiSP == null)
+        if($this->MaHangSX == null)
             $sql = "INSERT INTO hangsanxuat VALUES(null,'$this->TenHangSX','$this->HinhHangSX','$this->BiXoa')";
         else
-            $sql = "UPDATE hangsanxuat SET TenHangSanXuat = '$this->TenHangSX', LogoURL = '$this->HinhHangSX', BiXoa = $this->BiXoa
-                    WHERE MaHangSanXuat = $this->MaHangSanXuat";
+            $sql = "UPDATE hangsanxuat SET TenHangSanXuat = '$this->TenHangSX', LogoURL = '$this->HinhHangSX', BiXoa = '$this->BiXoa'
+                    WHERE MaHangSanXuat = $this->MaHangSX";
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }

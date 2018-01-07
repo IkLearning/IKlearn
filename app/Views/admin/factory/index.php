@@ -20,9 +20,13 @@
                 <th scope="row"><?= $item->MaHangSX ?></th>
                 <td><?= $item->TenHangSX ?></td>
                 <td><?= $item->HinhHangSX ?></td>
-                <td style="text-align:right"><a href="#"><button class="btn btn-warning">Sửa</button></a>&nbsp;<a href="#"><button class="btn btn-danger">Xóa</button></a></td>
+                <td style="text-align:right">
+                    <button onclick="load(<?= $item->MaHangSX ?>,'<?= $item->TenHangSX ?>')" class="btn btn-warning">Sửa</button>
+                    <button onclick="remove(<?= $item->MaHangSX ?>)" class="btn btn-danger">Xóa</button>
+                </td>
             </tr>
         <?php endforeach ?>
         </tbody>
     </table>
 </div>
+<script src="source/admin/js/factory.js"></script>
