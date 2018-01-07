@@ -19,10 +19,10 @@ class UserType{
             return true;
     }
 
-    public function find($id){
+    public static function find($id){
         $sql = "SELECT MaLoaiTaiKhoan,TenLoaiTaiKhoan FROM loaitaikhoan WHERE MaLoaiTaiKhoan = $id LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
-            $item = new Product;
+            $item = new UserType;
             while($row = mysqli_fetch_array($data)){
                 $item->MaLoaiTaiKhoan = $row['MaLoaiTaiKhoan'];
                 $item->TenLoaiTaiKhoan = $row['TenLoaiTaiKhoan'];

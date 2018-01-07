@@ -93,17 +93,67 @@ class AdminController extends Controller{
     }
 
     // Categories
+    public function saveProductType(){
+        $lsp = new ProductType;
+        $lsp->FromJson($_POST['lsp']);
+        if($lsp->save()){
+            print_r(json_encode(ProductType::all()));
+            return;
+        }
+        echo '1';
+    }
 
-
+    public function deleteProductType(){
+        $producttype = ProductType::find($_POST['id']);
+        if($producttype->delete())
+        {
+            print_r(json_encode(ProductType::all()));
+            return;
+        }
+            echo '1';
+    }
 
     //Brands
+    public function saveBrand(){
+        $hsx = new Factory;
+        $hsx->FromJson($_POST['hsx']);
+        if($hsx->save()){
+            print_r(json_encode(Factory::all()));
+            return;
+        }
+        echo '1';
+    }
 
-
-
-    //Users
+    public function deleteFactory(){
+        $factory = Factory::find($_POST['id']);
+        if($factory->delete())
+        {
+            print_r(json_encode(Factory::all()));
+            return;
+        }
+            echo '1';
+    }
 
 
     //User types
+    public function saveBrand(){
+        $usrtype = new UserType;
+        $usrtype->FromJson($_POST['usrtype']);
+        if($usrtype->save()){
+            print_r(json_encode(UserType::all()));
+            return;
+        }
+        echo '1';
+    }
 
+    public function deleteFactory(){
+        $usrtype = UserType::find($_POST['id']);
+        if($usrtype->delete())
+        {
+            print_r(json_encode(UserType::all()));
+            return;
+        }
+            echo '1';
+    }
 
 }

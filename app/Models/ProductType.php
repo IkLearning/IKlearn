@@ -5,8 +5,19 @@ class ProductType{
     public $TenLoaiSP;
     public $BiXoa;
 
+    public function FromJson($obj){
+        $data = json_decode($obj,true);
+        foreach($data as $key => $val)
+        {
+            if(property_exists(__CLASS__,$key))
+            {
+                $this->$key =  $val;
+            }
+        }
+    }
+
     public function save(){
-        if(!$this->MaLoaiSP)
+        if($this->MaLoaiSP == null)
             $sql = "INSERT INTO loaisanpham VALUES(null,'$this->TenLoaiSP','$this->BiXoa')";
         else
             $sql = "UPDATE loaisanpham SET TenLoaiSanPham = '$this->TenLoaiSP', BiXoa = '$this->BiXoa' WHERE MaLoaiSanPham = $this->MaLoaiSP";
@@ -20,12 +31,13 @@ class ProductType{
             return true;
     }
 
-    public function find($id){
-        $sql = "SELECT TenLoaiSanPham FROM loaisanpham WHERE MaLoaiSanPham = $id AND BiXoa = FALSE LIMIT 1";
+    public static function find($id){
+        $sql = "SELECT MaLoaiSanPham,TenLoaiSanPham FROM loaisanpham WHERE MaLoaiSanPham = $id AND BiXoa = FALSE LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
-            $item = new Product;
+            $item = new ProductType;
             while($row = mysqli_fetch_array($data)){
                 $item->MaLoaiSP = $row['MaLoaiSanPham'];
+                $item->TenLoaiSP = $row['TenLoaiSanPham'];
             }
             return $item;
         }

@@ -7,7 +7,7 @@ class Factory{
     public $BiXoa;
 
     public function save(){
-        if(!$this->MaLoaiSP)
+        if($this->MaLoaiSP == null)
             $sql = "INSERT INTO hangsanxuat VALUES(null,'$this->TenHangSX','$this->HinhHangSX','$this->BiXoa')";
         else
             $sql = "UPDATE hangsanxuat SET TenHangSanXuat = '$this->TenHangSX', LogoURL = '$this->HinhHangSX', BiXoa = $this->BiXoa
@@ -22,11 +22,12 @@ class Factory{
             return true;
     }
 
-    public function find($id){
-        $sql = "SELECT TenHangSanXuat,LogoURL FROM hangsanxuat WHERE MaHangSanXuat = $id AND BiXoa = FALSE LIMIT 1";
+    public static function find($id){
+        $sql = "SELECT MaHangSanXuat,TenHangSanXuat,LogoURL FROM hangsanxuat WHERE MaHangSanXuat = $id AND BiXoa = FALSE LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
             $item = new Factory;
             while($row = mysqli_fetch_array($data)){
+                $item->MaHangSX = $row['MaHangSanXuat'];
                 $item->TenHangSX = $row['TenHangSanXuat'];
                 $item->HinhHangSX = $row['LogoURL'];
             }
