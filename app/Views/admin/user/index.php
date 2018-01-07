@@ -13,7 +13,8 @@
                 <th>Tên Hiển Thị</th>
                 <th>Điện Thoại</th>
                 <th>Email</th>
-                <th>Thao Tác</th>
+                <th>Quyền</th>
+                <th style="text-align:right">Thao Tác</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,12 @@
                 <td><?= $item->TenHienThi ?></td>
                 <td><?= $item->DienThoai ?></td>
                 <td><?= $item->Email ?></td>
+                <td>
+                    <button onclick="editRole('<?= $item->MaTaiKhoan ?>')" data-toggle="modal" data-target="#myModal" class="btn btn-info">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <?= $item->TenLoaiTaiKhoan ?>
+                    </button>
+                </td>
                 <td style="text-align:right">
                     <button onclick="showUser(<?= $item->MaTaiKhoan ?>)" id="xem" class="btn btn-info">Xem</button>&nbsp;
                     <button onclick="editUser(<?= $item->MaTaiKhoan ?>)" id="sua" class="btn btn-warning">Sửa</button>&nbsp;
@@ -33,5 +40,27 @@
             <?php endforeach ?>
         </tbody>
     </table>
+</div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Thay đổi quyền hạn</h4>
+        </div>
+        <div class="modal-body">
+            <input id="idUser" type="text" value="" hidden>
+            <select class="form-control" name="role" id="role">
+            <?php foreach(UserType::all() as $item): ?>
+                <option value="<?= $item->MaLoaiTaiKhoan ?>"><?= $item->TenLoaiTaiKhoan ?></option>
+            <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" data-dismiss="modal">Thoát</button>
+            <button id="saveRole" class="btn btn-info">Save</button>
+        </div>
+    </div>
+  </div>
 </div>
 <script src="../../app/public/source/admin/js/user.js"></script>

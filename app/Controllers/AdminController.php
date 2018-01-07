@@ -66,6 +66,17 @@ class AdminController extends Controller{
         print_r(json_encode($item));
     }
 
+    public function saveUserRole(){
+        $user = User::find($_POST['id']);
+        $user->MaLoaiTaiKhoan = $_POST['role'];
+        if($user->save())
+        {
+            print_r(json_encode(User::all()));
+            return;
+        }
+        echo '1';
+    }
+
     public function saveUser(){
         $user = new User;
         $user->FromJson($_POST['usr']);
@@ -75,6 +86,7 @@ class AdminController extends Controller{
         }
         echo '1';
     }
+
 
     public function profile(){
         return $this->view('user.profile','admin.dashdoard');

@@ -11,6 +11,7 @@ class User{
     public $Email;
     public $BiXoa;
     public $MaLoaiTaiKhoan;
+    public $TenLoaiTaiKoan;
 
     public function FromJson($obj){
         $data = json_decode($obj,true);
@@ -38,7 +39,7 @@ class User{
                         DienThoai = '$this->DienThoai',
                         Email = '$this->Email', BiXoa = '$this->BiXoa',
                         MaLoaiTaiKhoan = '$this->MaLoaiTaiKhoan'
-                    WHERE MaLoaiTaiKhoan = $this->MaLoaiTaiKhoan";
+                    WHERE MaTaiKhoan = $this->MaTaiKhoan";
         endif;
 
         if(Provider::ExecuteNonQuery($sql))
@@ -60,6 +61,7 @@ class User{
                 $item->TenDangNhap = $row['TenDangNhap'];
                 $item->MatKhau = $row['MatKhau'];
                 $item->TenHienThi = $row['TenHienThi'];
+                $item->NgaySinh = $row['NgaySinh'];
                 $item->DiaChi = $row['DiaChi'];
                 $item->DienThoai = $row['DienThoai'];
                 $item->Email = $row['Email'];
@@ -92,8 +94,10 @@ class User{
 
     public static function all($num = 0){
         $sl = $num !=0 ? "LIMIT $num": "";
-        $sql = "SELECT MaTaiKhoan, TenDangNhap,TenHienThi, DiaChi, DienThoai, Email, MaLoaiTaiKhoan
-                FROM taikhoan ".$sl;
+        $sql = "SELECT TK.MaTaiKhoan, TK.TenDangNhap,TK.TenHienThi, TK.DiaChi,
+                        TK.DienThoai, TK.Email, TK.MaLoaiTaiKhoan, LTK.TenLoaiTaiKhoan
+                FROM taikhoan TK, loaitaikhoan LTK
+                WHERE TK.MaLoaiTaiKhoan = LTK.MaLoaiTaiKhoan".$sl;
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
@@ -118,6 +122,7 @@ class User{
             $item->DienThoai = $row['DienThoai'];
             $item->Email = $row['Email'];
             $item->MaLoaiTaiKhoan = $row['MaLoaiTaiKhoan'];
+            $item->TenLoaiTaiKhoan = $row['TenLoaiTaiKhoan'];
             $result[] = $item;
         }
         return $result;

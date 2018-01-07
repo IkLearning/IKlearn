@@ -34,4 +34,37 @@ $('#saveUser').on('click',function(){
     });
 });
 
+
 //Load user using ajax
+function updateRow(data){
+    
+}
+
+//Change user role
+
+function editRole(id){
+    $('#idUser').val(id);
+}
+
+function saveRole(id){
+    var role = $('#role').val();
+    $.ajax({
+        url: 'http://iklearn.me:88/admin/saveUserRole',
+        type:'POST',
+        data: {id,role},
+        success:(response)=>{
+            if(response == '1'){
+                alert("Đổi quyền hạn thất bại");
+            }
+            else
+            {
+                alert(response);
+            }
+        }
+
+    });
+}
+
+$('#saveRole').on('click',function(){
+    saveRole($('#idUser').val());
+});
