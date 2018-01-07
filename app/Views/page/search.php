@@ -40,6 +40,7 @@
         </label>
     </div>
     <li class="list-inline-item breadcrumb-item">|</li>
+        <!-- Type filter -->
     <div class="list-inline-item checkbox-animated">
         <input id="fighter" type="checkbox" class="searchFilter">
         <label for="fighter">
@@ -89,6 +90,17 @@
         </label>
     </div>
     <li class="list-inline-item breadcrumb-item">|</li>
+    <!-- Brand filter -->
+    <?php foreach(Factory::all() as $item): ?>
+    <div class="list-inline-item checkbox-animated">
+        <input id="HSX<?= $item->MaHangSX ?>" type="checkbox" class="searchFilter">
+        <label for=HSX"<?= $item->MaHangSX ?>">
+            <span class="check"></span>
+            <span class="box"></span>
+            <?= $item->TenHangSX ?>
+        </label>
+    </div>
+    <?php endforeach; ?>
 </ul>
 <div id="resultSearch"><h3 class="alert alert-success"><?= count($this->items) ?> Kết quả</h3></div>
 <div class="row" style="margin:5% 0" id="searchBody">

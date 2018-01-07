@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-<a class="navbar-brand" href="<?= route('page','index') ?>">LNL</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -31,9 +30,9 @@
         <?php if(Session::has('cart')): ?>
           <?php foreach(Session::get('cart')->items as $item): ?>
             <a class="dropdown-item" onclick="removeCartItem(<?= $item['item']->MaSP ?>)">
-              <span><img width="50" src="source/img/product/<?= trim($item['item']->TenSP)?>/thumbnail/<?=trim($item['item']->TenSP).'.png' ?>" alt=""></span>
+              <span><img width="50" src="source/img/product/<?= str_replace(' ','',$item['item']->TenSP)?>/thumbnail/<?=str_replace(' ','',$item['item']->TenSP).'.png' ?>" alt=""></span>
               <span><?= $item['item']->TenSP ?></span>
-              <span><?= $item['item']->GiaSP ?></span>
+              <span><i class="fa fa-diamond" aria-hidden="true"></i><?= $item['item']->GiaSP ?></span>
               <span>x<?= $item['qty'] ?></span>
               <span class="badge badge-pill badge-warning"><i class="fa fa-times" aria-hidden="true"></i></span>
             </a>

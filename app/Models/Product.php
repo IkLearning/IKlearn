@@ -112,7 +112,7 @@ class Product{
         $sql = "SELECT SP.MaSanPham, SP.TenSanPham, SP.GiaSanPham, SP.HinhURL, SP.MoTa
                 FROM sanpham SP
                 WHERE SP.MaLoaiSanPham = $id AND SP.BiXoa = FALSE
-                ORDER BY SP.SoLuongBan DESC LIMIT 0, 8";
+                ORDER BY SP.NgayNhap DESC LIMIT 0, 5";
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }

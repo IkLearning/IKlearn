@@ -18,11 +18,23 @@ class Bootstrap{
                 endif;
                 if(isset($tokens[2])):
                     $action = strtok($tokens[2],'?');
+                    if(!method_exists($controller,$action)):
+                        Error();
+                        return;
+                    endif;
                     $controller->{$action}($request?? null);
                 else:
                     $controller->index($request ?? null);
                 endif;
+            else:
+                Error();
             endif;
         endif;
     }
+}
+
+function Error(){
+    require_once('app/Controllers/ErrorController.php');
+    $error = new ErrorController;
+    $error->index();
 }

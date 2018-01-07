@@ -14,7 +14,10 @@ class PageController extends Controller{
         $this->item = Product::find($id);
         $this->item->SoLuotXem++;
         $this->item->save();
-        return $this->view('page.detail','master','item');
+        $this->type = ProductType::find($this->item->MaLoaiSP);
+        $this->brand = Factory::find($this->item->MaHangSX);
+        $this->sameItems = Product::getByType($this->item->MaLoaiSP);
+        return $this->view('page.detail','master','item','type','brand','sameItems');
     }
 
     public function type($id){

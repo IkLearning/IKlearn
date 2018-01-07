@@ -64,7 +64,7 @@ function updateSearch(data){
                     '<h4><span>'+item.GiaSP+'<i class="fa fa-diamond" aria-hidden="true"></i></span></h4>'+
                     '<hr />'+
                     '<p>'+item.MoTa.substr(0,90)+'..</p>'+
-                    '<a href="Page/Detail/'+item.MaSP+'">Chi tiết</a>'+
+                    '<a href="http://Iklearn.me:88/Page/Detail/'+item.MaSP+'">Chi tiết</a>'+
                     '<a href="javascript:;" onclick="addCart('+item.MaSP+')"><span class="fa fa-cart-arrow-down"></span></a>'+
                 '</div>'+
             '</div>'
