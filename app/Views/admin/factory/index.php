@@ -21,7 +21,7 @@
                 <td><?= $item->TenHangSX ?></td>
                 <td><?= $item->HinhHangSX ?></td>
                 <td style="text-align:right">
-                    <button onclick="load(<?= $item->MaHangSX ?>,'<?= $item->TenHangSX ?>')" class="btn btn-warning">Sửa</button>
+                    <button class="btn btn-warning edit">Sửa</button>
                     <button onclick="remove(<?= $item->MaHangSX ?>)" class="btn btn-danger">Xóa</button>
                 </td>
             </tr>

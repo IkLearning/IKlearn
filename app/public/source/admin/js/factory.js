@@ -54,7 +54,7 @@ function updateRow(data){
                 '<td>'+item.TenHangSX+'</td>'+
                 '<td>'+item.HinhHangSX+'</td>'+
                 '<td style="text-align:right">'+
-                    '<button onclick="load('+item.MaHangSX+','+String(item.TenHangSX)+')" class="btn btn-warning">Sửa</button>&nbsp;&nbsp;'+
+                    '<button  class="btn btn-warning edit">Sửa</button>&nbsp;&nbsp;'+
                     '<button onclick="remove('+item.MaHangSX+')" class="btn btn-danger">Xóa</button>'+
                 '</td>'+
             '</tr>'
@@ -62,11 +62,14 @@ function updateRow(data){
     });
 }
 
-function load(id,ten){
+$('tbody').on('click','.edit',function(){
+    var row = $(this).closest("tr");
+    var id = row.find("th:nth-child(1)").text();
+    var ten = row.find("td:nth-child(2)").text();
     $('#ten').val(ten);
     $('#id').val(id);
     $('#myModal').modal();
-}
+});
 
 function clear(){
     $('#ten').val('');

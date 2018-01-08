@@ -80,8 +80,18 @@ class AdminController extends Controller{
     public function saveUser(){
         $user = new User;
         $user->FromJson($_POST['usr']);
+        $user->MatKhau = md5($user->MatKhau);
         if($user->save()){
-            echo '0';
+            print_r(json_encode(User::all()));
+            return;
+        }
+        echo '1';
+    }
+
+    public function deleteUser(){
+        $user = User::find($_POST['id']);
+        if($user->delete()){
+            print_r(json_encode(User::all()));
             return;
         }
         echo '1';

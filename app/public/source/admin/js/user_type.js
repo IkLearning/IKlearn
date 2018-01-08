@@ -1,14 +1,13 @@
-
 function save(){
     var id = $('#id').val() != ''?$('#id').val():null;
-    var lsp = $('#ten').val();
+    var ltk = $('#ten').val();
     var dulieu = {
-        'MaLoaiSP':id,'TenLoaiSP':lsp
+        'MaLoaiTaiKhoan':id,'TenLoaiTaiKhoan':ltk
     };
     $.ajax({
-        url:'http://Iklearn.me:88/admin/saveProductType',
+        url:'http://Iklearn.me:88/admin/saveUserType',
         type:'POST',
-        data: {lsp:JSON.stringify(dulieu)},
+        data: {usrtype:JSON.stringify(dulieu)},
         success: (response) =>{
             if(response == '1')
                 alert('Thêm thất bại');
@@ -23,7 +22,7 @@ function save(){
 
 function remove(id){
     $.ajax({
-        url: 'http://iklearn.me:88/admin/deleteProductType',
+        url: 'http://iklearn.me:88/admin/deleteUserType',
         type: 'POST',
         data: {id},
         success: (response)=>{
@@ -38,7 +37,7 @@ function remove(id){
     });
 }
 
-$('#saveProductType').on('click',function(){
+$('#saveUserType').on('click',function(){
     save();
 });
 
@@ -51,11 +50,11 @@ function updateRow(data){
     $.each(data,(index,item) => {
         $('tbody').append(
             '<tr>'+
-                '<th scope="row">'+item.MaLoaiSP+'</th>'+
-                '<td>'+item.TenLoaiSP+'</td>'+
+                '<th scope="row">'+item.MaLoaiTaiKhoan+'</th>'+
+                '<td>'+item.TenLoaiTaiKhoan+'</td>'+
                 '<td style="text-align:right">'+
                     '<button class="btn btn-warning edit">Sửa</button>&nbsp;&nbsp;'+
-                    '<button onclick="remove('+item.MaLoaiSP+')" class="btn btn-danger">Xóa</button>'+
+                    '<button onclick="remove('+item.MaLoaiTaiKhoan+')" class="btn btn-danger">Xóa</button>'+
                 '</td>'+
             '</tr>'
         );
@@ -74,5 +73,5 @@ $('tbody').on('click','.edit',function(){
 function clear(){
     $('#ten').val('');
     $('#id').val('');
-    $('#myModal').modal();
+    $('#myModal').modal('toggle');
 }

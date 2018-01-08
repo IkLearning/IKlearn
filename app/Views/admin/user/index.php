@@ -32,9 +32,9 @@
                     </button>
                 </td>
                 <td style="text-align:right">
-                    <button onclick="showUser(<?= $item->MaTaiKhoan ?>)" id="xem" class="btn btn-info">Xem</button>&nbsp;
-                    <button onclick="editUser(<?= $item->MaTaiKhoan ?>)" id="sua" class="btn btn-warning">Sửa</button>&nbsp;
-                    <button onclick="deleteUser(<?= $item->MaTaiKhoan ?>)" id="xoa" class="btn btn-danger">Xóa</button>
+                    <button class="btn btn-info show">Xem</button>&nbsp;
+                    <button class="btn btn-warning edit">Sửa</button>&nbsp;
+                    <button class="btn btn-danger remove">Xóa</button>
                 </td>
             </tr>
             <?php endforeach ?>
@@ -63,4 +63,4 @@
     </div>
   </div>
 </div>
-<script src="../../app/public/source/admin/js/user.js"></script>
+<script src="source/admin/js/user.js"></script>

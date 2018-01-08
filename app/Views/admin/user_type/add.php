@@ -9,6 +9,7 @@
     </div>
     <div class="modal-body">
         <form>
+            <input type="text" name="id" id="id" hidden value="">
             <div class="form-group">
                 <label class="col-form-label">Tên</label>
                 <input type="text" placeholder="Nhập tên loại" class="form-control" id="ten">
@@ -17,7 +18,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn btn-warning">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button id="saveUserType" type="button" class="btn btn-primary">Save</button>
     </div>
     </div>
 </div>

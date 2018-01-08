@@ -19,7 +19,7 @@
                 <th scope="row"><?= $item->MaLoaiSP ?></th>
                 <td><?= $item->TenLoaiSP ?></td>
                 <td style="text-align:right">
-                    <button onclick="load(<?= $item->MaLoaiSP ?>,'<?= $item->TenLoaiSP ?>')" class="btn btn-warning">Sửa</button>
+                    <button class="btn btn-warning edit">Sửa</button>
                     <button onclick="remove(<?= $item->MaLoaiSP ?>)" class="btn btn-danger">Xóa</button>
                 </td>
             </tr>

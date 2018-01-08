@@ -4,8 +4,19 @@ class UserType{
     public $MaLoaiTaiKhoan;
     public $TenLoaiTaiKhoan;
 
+    public function FromJson($obj){
+        $data = json_decode($obj,true);
+        foreach($data as $key => $val)
+        {
+            if(property_exists(__CLASS__,$key))
+            {
+                $this->$key =  $val;
+            }
+        }
+    }
+
     public function save(){
-        if(!$this->MaLoaiSP)
+        if($this->MaLoaiTaiKhoan == null)
             $sql = "INSERT INTO loaitaikhoan VALUES(null,'$this->TenLoaiTaiKhoan')";
         else
             $sql = "UPDATE loaitaikhoan SET TenLoaiTaiKhoan = '$this->TenLoaiTaiKhoan' WHERE MaLoaiTaiKhoan = $this->MaLoaiTaiKhoan";
