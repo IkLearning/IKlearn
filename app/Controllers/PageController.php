@@ -92,6 +92,20 @@ class PageController extends Controller{
         header('location:index');
     }
 
+    public function saveProfileBasicInfo(){
+        $temp = json_decode($_POST['user'],true);
+        $user = User::find($temp['MaTaiKhoan']);
+        $user->TenHienThi = $temp['TenHienThi'];
+        $user->DiaChi = $temp['DiaChi'];
+        $user->DienThoai = $temp['DienThoai'];
+        $user->Email = $temp['Email'];
+        if($user->save()){
+            print_r(json_encode($user));
+        }
+        else
+            echo '1';
+    }
+
     public function loadMore(){
         if(isset($_POST['id']))
             if($data = Product::more($_POST['id']))

@@ -23,7 +23,7 @@
                 <td><?= $item->TenSP ?></td>
                 <td><?= $item->GiaSP ?></td>
                 <td><?= $item->HinhSP ?></td>
-                <td><?= substr($item->MoTa,0,100)?>..</td>
+                <td><?= substr($item->MoTa,0,50)?>..</td>
                 <td style="text-align:right">
                     <button onclick="showProduct(<?= $item->MaSP ?>)" id="xem" class="btn btn-info">Xem</button>&nbsp;
                     <button onclick="editProduct(<?= $item->MaSP ?>)" id="sua" class="btn btn-warning">Sửa</button>&nbsp;

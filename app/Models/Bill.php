@@ -1,5 +1,4 @@
 <?php
-
 class Bill{
     public $MaHD;
     public $NgayLap;
@@ -7,7 +6,6 @@ class Bill{
     public $MaTK;
     public $MaTinhTrang;
     public $TenTinhTrang;
-
     public function save(){
         if(!$this->MaHD){
             $lastID = "HD1";
@@ -30,13 +28,11 @@ class Bill{
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }
-
     public function delete(){
         $sql = "DELETE FROM dondathang WHERE MaDonDatHang = $this->MaHD";
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }
-
     public static function find($id){
         $sql = "SELECT * FROM dondathang WHERE MaDonDatHang = '$id' LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
@@ -51,7 +47,6 @@ class Bill{
             return $item;
         }
     }
-
     public static function getByUserID($id){
         $sql = "SELECT B.MaDonDatHang,B.NgayLap,B.TongThanhTien,B.MaTaiKhoan,B.MaTinhTrang,TT.TenTinhTrang
                 FROM dondathang B, tinhtrang TT
@@ -60,7 +55,6 @@ class Bill{
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
-
     public static function all(){
         $sql = "SELECT B.MaDonDatHang,B.NgayLap,B.TongThanhTien,B.MaTaiKhoan,B.MaTinhTrang,TT.TenTinhTrang
                 FROM dondathang B, tinhtrang TT
@@ -68,7 +62,6 @@ class Bill{
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
-
     static function convert($data){
         $result = array();
         while($row = mysqli_fetch_array($data)){

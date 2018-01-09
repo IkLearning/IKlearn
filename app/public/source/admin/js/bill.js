@@ -16,7 +16,7 @@ function updateBills(data){
                     '</button>'+
                 '</td>'+
                 '<td style="text-align:center">'+
-                    '<button onclick="showBill('+item.MaHD+')" id="xem" class="btn btn-info">Xem</button>&nbsp;'+
+                    '<button  class="btn btn-info show">Xem</button>&nbsp;'+
                 '</td>'+
             '</tr>'
         );
@@ -38,6 +38,39 @@ function updateState(id){
 
 function editState(id){
     $('#billID').val(id);
+}
+
+$('tbody').on('click','.show',function(){
+    var row = $(this).closest("tr");
+    var id = row.find("th:nth-child(1)").text();
+    $('#detalModalLabel').html('Thông Tin Đơn Hàng ' +id);
+    $.ajax({
+        url:'http://Iklearn.me:88/admin/showBill',
+        type:'POST',
+        data: {id},
+        success: (response)=>{
+            loadBillDetail(response);
+        }
+    });
+});
+
+function loadBillDetail(data){
+    $('#detailBody').html('');
+    if($.trim(data)=='')
+        return;
+    data = JSON.parse(data);
+    $.each(data,(index,item)=>{
+        $('#detailBody').append(
+            '<tr>'+
+                '<th scope="row">'+item.MaCTHD+'</th>'+
+                '<td style="text-align:center">'+item.SoLuong+'</td>'+
+                '<td style="text-align:center">'+item.GiaBan+'</td>'+
+                '<td style="text-align:center">'+item.MaHD+'</td>'+
+                '<td style="text-align:center">'+item.MaSP+'</td>'+
+            '</tr>'
+        );
+    });
+    $('#detailModal').modal();
 }
 
 $('#saveBillState').on('click',function(){

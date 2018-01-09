@@ -29,7 +29,7 @@ function loadProduct(id){
             $('#soluongban').val(data['SoLuongBan']);
             tinymce.get("mota").setContent(data['MoTa'] + " ");
             $('#bixoa').val(data['BiXoa']);
-            $('#featureImage').after('<img src="'+'../../app/public/source/img/product/'+ data['TenSP'] +'/cover/'+data['HinhSP'] + '" width="150">');
+            $('#featureImage').after('<img src="'+'source/img/product/'+ data['TenSP'] +'/cover/'+data['HinhSP'] + '" width="150">');
             $('#productModal').modal();
         }
     });
@@ -41,10 +41,13 @@ function deleteProduct(id){
         type:'POST',
         data:{id},
         success:(response)=>{
-            if(response === '0')
-                alert('Xóa thành công');
+            if(response == '1')
+                alert('Xóa thất bại');
             else
-                alert('Xóa Thất bại');
+            {
+                alert('Xóa thành công');
+                saveRowProduct(response);
+            }
         }
     });
 }
@@ -80,16 +83,12 @@ $('#saveProduct').on('click',function(){
         url: "http://Iklearn.me:88/admin/saveProduct",
         data: {'sp':JSON.stringify(dulieu)},
         success: function(response) {
-            if(response == '0'){
+            if(response == '1')
+                alert('Lưu thất bại');
+            else{
                 alert('Lưu thành công');
-                if(id==null)
-                    saveRowProduct(dulieu,0);
-                else
-                    saveRowProduct(dulieu,1);
-                clearProduct();
+                saveRowProduct(response);
             }
-            else
-                alert(response);
         }
     });
 });
@@ -110,26 +109,27 @@ var clearProduct = function(){
 
 
 //Save row product after call API success
-function saveRowProduct(data,status){
-    var lastRowID = $('table tbody tr:last').prop('id').substr(2);
-    var id = status == 0?parseInt(lastRowID)+1:data.MaSP;
-    var content =
-    '<tr id="sp'+id+'">'+
-        '<th scope="row">'+id+'</th>'+
-        '<td>'+data.TenSP+'</td>'+
-        '<td>'+data.GiaSP+'</td>'+
-        '<td>'+data.HinhSP+'</td>'+
-        '<td>'+data.MoTa.substr(0, 90)+'..</td>'+
-        '<td style="text-align:right">'+
-            '<button onclick="showProduct('+id+')" id="xem" class="btn btn-info">Xem</button>&nbsp;&nbsp'+
-            '<button onclick="editProduct('+id+')" id="sua" class="btn btn-warning">Sửa</button>&nbsp;&nbsp'+
-            '<button onclick="deleteProduct('+id+')"id="xoa" class="btn btn-danger">Xóa</button>'+
-        '</td>'+
-    '</tr>';
-    if(status == 0)
-        $('tbody').append(content);
-    else
-        $('#sp'+data.MaSP).replaceWith(content);
+function saveRowProduct(data){
+    $('tbody').html('');
+    if($.trim(data) == '')
+        return;
+    data = JSON.parse(data);
+    $.each(data,(index,item)=>{
+        $('tbody').append(
+            '<tr id="sp'+item.MaSP+'">'+
+                '<th scope="row">'+item.MaSP+'</th>'+
+                '<td>'+item.TenSP+'</td>'+
+                '<td>'+item.GiaSP+'</td>'+
+                '<td>'+item.HinhSP+'</td>'+
+                '<td>'+item.MoTa.substr(0,50)+'..</td>'+
+                '<td style="text-align:right">'+
+                    '<button onclick="showProduct('+item.MaSP+')" id="xem" class="btn btn-info">Xem</button>&nbsp;&nbsp'+
+                    '<button onclick="editProduct('+item.MaSP+')" id="sua" class="btn btn-warning">Sửa</button>&nbsp;&nbsp'+
+                    '<button onclick="deleteProduct('+item.MaSP+')"id="xoa" class="btn btn-danger">Xóa</button>'+
+                '</td>'+
+            '</tr>'
+        );
+    });
 }
 
 

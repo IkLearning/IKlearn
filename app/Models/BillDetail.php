@@ -1,12 +1,10 @@
 <?php
-
 class BillDetail{
     public $MaCTHD;
     public $SoLuong;
     public $GiaBan;
     public $MaHD;
     public $MaSP;
-
     public function save(){
         if(!$this->MaCTHD){
             $lastID = "CTHD1";
@@ -30,13 +28,11 @@ class BillDetail{
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }
-
     public function delete(){
         $sql = "DELETE FROM chitietdondathang WHERE MaChiTietDonDatHang = $this->MaCTHD";
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }
-
     public function find($id){
         $sql = "SELECT * FROM chitietdondathang WHERE MaChiTietDonDatHang = $id LIMIT 1";
         if($data = Provider::ExecuteQuery($sql)){
@@ -51,14 +47,19 @@ class BillDetail{
             return $item;
         }
     }
-
     public static function all(){
         $sql = "SELECT BD.MaChiTietDonDatHang,BD.SoLuong,BD.GiaBan,BD.MaDonDatHang,BD.MaSanPham
                 FROM chitietdondathang BD";
         if($data = Provider::ExecuteQuery($sql))
             return self::convert($data);
     }
-
+    public static function getByBillID($id){
+        $sql = "SELECT BD.MaChiTietDonDatHang,BD.SoLuong,BD.GiaBan,BD.MaDonDatHang,BD.MaSanPham
+                FROM chitietdondathang BD
+                WHERE BD.MaDonDatHang = '$id'";
+        if($data = Provider::ExecuteQuery($sql))
+            return self::convert($data);
+    }
     static function convert($data){
         $result = array();
         while($row = mysqli_fetch_array($data)){

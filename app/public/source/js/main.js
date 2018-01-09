@@ -193,3 +193,49 @@ function checkCaptcha(){
     });
     return flag;
 }
+
+//Change user info
+$('#loadForm').on('click',function(){
+    var ten = $('#user-name').text();
+    var diachi = $('#user-address').text();
+    var email = $('#user-email').text();
+    var dienthoai = $('#user-phone').text();
+    $('#tenhienthi').val(ten);
+    $('#diachi').val(diachi);
+    $('#email').val(email);
+    $('#dienthoai').val(dienthoai);
+  });
+  $('#saveUser').on('click',function(){
+    var id = $('#id').val();
+    var ten = $('#tenhienthi').val();
+    var diachi = $('#diachi').val();
+    var email = $('#email').val();
+    var dienthoai = $('#dienthoai').val();
+    if(ten == '' || diachi == '' || email == '' || dienthoai == '')
+    {
+      alert('Vui lòng nhập đủ thông tin');
+      return;
+    }
+    var dulieu = {
+      'MaTaiKhoan':id,'TenHienThi':ten,'DiaChi':diachi,'Email':email,'DienThoai':dienthoai
+    };
+    $.ajax({
+      url: 'http://Iklearn.me:88/page/saveProfileBasicInfo',
+      type:'POST',
+      data: {'user':JSON.stringify(dulieu)},
+      success: (response)=>{
+          if(response == '1')
+          {
+            alert('Cập nhật không thành công');
+          }
+          else{
+            data = JSON.parse(response);
+            $('#user-name').text(data.TenHienThi);
+            $('#user-address').text(data.DiaChi);
+            $('#user-email').text(data.Email);
+            $('#user-phone').text(data.DienThoai);
+            $('#userModal').modal('toggle');
+          }
+      }
+    });
+  });

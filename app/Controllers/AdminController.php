@@ -1,6 +1,5 @@
 <?php
 require_once('libs/autoload.php');
-
 class AdminController extends Controller{
     public function __construct(){
         if(!Session::has('auth'))
@@ -9,63 +8,52 @@ class AdminController extends Controller{
             header("location: ../page");
         parent::__construct();
     }
-
     public function index(){
         return $this->view('modules.table','admin.dashdoard');
     }
-
     public function products(){
         return $this->view('product.index','admin.dashdoard');
     }
-
     public function producttypes(){
         return $this->view('product_type.index','admin.dashdoard');
     }
-
     public function factories(){
         return $this->view('factory.index','admin.dashdoard');
     }
-
     public function users(){
         return $this->view('user.index','admin.dashdoard');
     }
-
     public function usertypes(){
         return $this->view('user_type.index','admin.dashdoard');
     }
-
     //Product Activity
     public function showProduct(){
       $item =  Product::find($_POST['id']);
       print_r(json_encode($item));
     }
-
     public function saveProduct(){
         $product = new Product;
         $product->FromJson($_POST['sp']);
         if($product->MaSP == null)
             $product->NgayNhap = date('Y-m-d H:i:s');
         if($product->save()){
-            echo '0';
+            print_r(json_encode(Product::all()));
             return;
         }
         echo '1';
     }
-
     public function deleteProduct(){
         $product = Product::find($_POST['id']);
         if($product->delete())
-            echo '0';
+            print_r(json_encode(Product::all()));
         else
             echo '1';
     }
-
     //User Activity
     public function showUser(){
         $item = User::find($_POST['id']);
         print_r(json_encode($item));
     }
-
     public function saveUserRole(){
         $user = User::find($_POST['id']);
         $user->MaLoaiTaiKhoan = $_POST['role'];
@@ -76,7 +64,6 @@ class AdminController extends Controller{
         }
         echo '1';
     }
-
     public function saveUser(){
         $user = new User;
         $user->FromJson($_POST['usr']);
@@ -87,7 +74,6 @@ class AdminController extends Controller{
         }
         echo '1';
     }
-
     public function deleteUser(){
         $user = User::find($_POST['id']);
         if($user->delete()){
@@ -96,24 +82,22 @@ class AdminController extends Controller{
         }
         echo '1';
     }
-
-
     public function profile(){
         return $this->view('user.profile','admin.dashdoard');
     }
-
     //Bill Activity
     public function bills(){
         return $this->view('bill.index','admin.dashdoard');
     }
-
     public function updateBillState(){
         $bill = Bill::find($_POST['id']);
         $bill->MaTinhTrang = $_POST['tinhtrang'];
         if($bill->save())
-            print_r (json_encode(Bill::all()));
+            print_r(json_encode(Bill::all()));
     }
-
+    public function showBill(){
+        print_r(json_encode(BillDetail::getByBillID($_POST['id'])));
+    }
     // Categories
     public function saveProductType(){
         $lsp = new ProductType;
@@ -124,7 +108,6 @@ class AdminController extends Controller{
         }
         echo '1';
     }
-
     public function deleteProductType(){
         $producttype = ProductType::find($_POST['id']);
         if($producttype->delete())
@@ -134,7 +117,6 @@ class AdminController extends Controller{
         }
             echo '1';
     }
-
     //Factory
     public function saveFactory(){
         $hsx = new Factory;
@@ -145,7 +127,6 @@ class AdminController extends Controller{
         }
         echo '1';
     }
-
     public function deleteFactory(){
         $factory = Factory::find($_POST['id']);
         if($factory->delete())
@@ -155,8 +136,6 @@ class AdminController extends Controller{
         }
             echo '1';
     }
-
-
     //User types
     public function saveUserType(){
         $usrtype = new UserType;
@@ -167,7 +146,6 @@ class AdminController extends Controller{
         }
         echo '1';
     }
-
     public function deleteUserType(){
         $usrtype = UserType::find($_POST['id']);
         if($usrtype->delete())
@@ -177,5 +155,4 @@ class AdminController extends Controller{
         }
             echo '1';
     }
-
 }

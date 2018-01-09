@@ -45,7 +45,6 @@ function updateRow(data){
                 '<th scope="row">'+item.MaTaiKhoan+'</th>'+
                 '<td>'+item.TenDangNhap+'</td>'+
                 '<td>'+item.TenHienThi+'</td>'+
-                '<td>'+item.DienThoai+'</td>'+
                 '<td>'+item.Email+'</td>'+
                 '<td>'+
                     '<button onclick="editRole('+item.MaTaiKhoan+')" data-toggle="modal" data-target="#myModal" class="btn btn-info">'+

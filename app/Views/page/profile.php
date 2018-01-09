@@ -7,7 +7,7 @@
     </a>
 
     <!-- the username -->
-    <h1><?= Session::get('auth')->displayName ?></h1>
+    <h1 id="user-name"><?= Session::get('auth')->displayName ?></h1>
 
     <!-- and role or location -->
     <h2><?= Session::get('auth')->roleName ?></h2>
@@ -18,11 +18,11 @@
   <?php $item = User::find(Session::get('auth')->id) ?>
   <div class="profile-bio">
     <p>
-      Địa chỉ: <?= $item->DiaChi ?>
+      Địa chỉ: <span id="user-address"><?= $item->DiaChi ?></span>
       <br>
-      Liên hệ: <?= $item->DienThoai?>
+      Liên hệ: <span id="user-phone"><?= $item->DienThoai?></span>
       <br>
-      Email: <?= $item->Email?>
+      Email: <span id="user-email"><?= $item->Email?></span>
     </p>
   </div>
 
@@ -50,11 +50,59 @@
     </li>
   </ul>
   <div class="container row">
-    <div class="col-6">
+    <div class="col-4">
       <a style="float:right" href="<?=route('page','index') ?>"><i class="fa fa-home"></i>Trang chủ</a>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <a style="float:right" href="<?=route('auth','logout') ?>"><i class="fa fa-sign-out"></i>Đăng xuất</a>
+    </div>
+    <div class="col-4">
+      <a href="#" id="loadForm" data-toggle="modal" data-target="#userModal">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Sửa thông tin
+      </a>
     </div>
   </div>
 </aside>
+
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="uploadForm">
+            <input type="text" name="id" id="id" hidden value="<?= Session::get('auth')->id ?>">
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="tenhienthi" class="col-form-label">Tên Hiển Thị</label>
+                    <input class="form-control" type="email" name="tenhienthi" id="tenhienthi">
+                </div>
+                <div class="form-group col-6">
+                    <label for="diachi" class="col-form-label">Địa Chỉ</label>
+                    <input class="form-control" type="text" name="diachi" id="diachi">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="dienthoai" class="col-form-label">Điện Thoại</label>
+                    <input class="form-control" type="text" name="dienthoai" id="dienthoai">
+                </div>
+                <div class="form-group col-6">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" id="email">
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        <button id="saveUser" type="button" class="btn btn-info">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

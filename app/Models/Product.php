@@ -70,7 +70,7 @@ class Product{
     public static function findByName($name){
         $sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$name%' AND BiXoa = FALSE LIMIT 10";
         if($data = Provider::ExecuteQuery($sql))
-            return self::convert($data);
+            return self::convert($data);    
     }
 
     public static function all($num = 0){

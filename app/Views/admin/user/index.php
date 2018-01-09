@@ -1,6 +1,6 @@
 <div class="container">
     <div style="margin-top: 5%; text-align:center">
-        <h1>Quản Lí Sản Phẩm</h1>
+        <h1>Quản Lí Tài Khoản</h1>
     </div>
     <div style="margin: 1% 0; text-align:right">
         <?php include('add.php') ?>
@@ -11,7 +11,6 @@
                 <th>#</th>
                 <th>Tên Đăng Nhập</th>
                 <th>Tên Hiển Thị</th>
-                <th>Điện Thoại</th>
                 <th>Email</th>
                 <th>Quyền</th>
                 <th style="text-align:right">Thao Tác</th>
@@ -23,7 +22,6 @@
                 <th scope="row"><?= $item->MaTaiKhoan ?></th>
                 <td><?= $item->TenDangNhap ?></td>
                 <td><?= $item->TenHienThi ?></td>
-                <td><?= $item->DienThoai ?></td>
                 <td><?= $item->Email ?></td>
                 <td>
                     <button onclick="editRole('<?= $item->MaTaiKhoan ?>')" data-toggle="modal" data-target="#myModal" class="btn btn-info">
