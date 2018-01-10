@@ -24,7 +24,7 @@ class BillDetail{
             $sql = "UPDATE chitietdondathang 
                     SET SoLuong = '$this->SoLuong', GiaBan = '$this->GiaBan',
                         MaDonDatHang = '$this->MaHD', MaSanPham = '$this->MaSP'
-                    WHERE MaMaChiTietDonDatHang = $this->MaCTHD";
+                    WHERE MaChiTietDonDatHang = $this->MaCTHD";
         if(Provider::ExecuteNonQuery($sql))
             return true;
     }

@@ -58,5 +58,4 @@ function checkout(){
 
 $('#ordered-item').on('click','#checkout',function(){
     checkout();
-
 });
